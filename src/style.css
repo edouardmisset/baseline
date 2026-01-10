@@ -1,72 +1,100 @@
 :root {
-	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-	line-height: 1.5;
-	font-weight: 400;
-
-	color: var(--sl-color-white);
-	background-color: var(--sl-color-bg);
-
-	font-synthesis: none;
-	text-rendering: optimizeLegibility;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	-webkit-text-size-adjust: 100%;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: var(--sl-color-white);
+  background-color: var(--sl-color-bg);
+  font-synthesis: none;
+  text-rendering: optimizelegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-size-adjust: 100%;
 
   /* Starlight Theme Shim */
-  --sl-color-white: #ffffff;
-  --sl-color-gray-1: #eceef1;
-  --sl-color-gray-2: #c0c2c7;
-  --sl-color-gray-3: #888b96;
-  --sl-color-gray-4: #545861;
-  --sl-color-gray-5: #353841;
-  --sl-color-gray-6: #24262e;
-  --sl-color-black: #17181c;
-  
-  --sl-color-accent: #a37df9;
-  --sl-color-accent-low: #281d3d;
-  --sl-color-bg: #17181c;
+  --sl-color-white: hsl(0deg 0% 100%);
+  --sl-color-gray-1: hsl(216deg 16% 94%);
+  --sl-color-gray-2: hsl(223deg 6% 77%);
+  --sl-color-gray-3: hsl(227deg 6% 56%);
+  --sl-color-gray-4: hsl(222deg 7% 35%);
+  --sl-color-gray-5: hsl(225deg 10% 23%);
+  --sl-color-gray-6: hsl(228deg 12% 16%);
+  --sl-color-black: hsl(228deg 10% 10%);
+  --sl-color-accent: hsl(258deg 91% 73%);
+  --sl-color-accent-low: hsl(261deg 36% 18%);
+  --sl-color-bg: hsl(228deg 10% 10%);
   --sl-nav-height: 0px;
-
-  --sl-color-yellow-high: #ffea00;
+  --sl-color-yellow-high: hsl(55deg 100% 50%);
 
   /* Category Colors */
-  --html-color: #e44d26;
-  --css-color: #264de4;
-  --js-color: #f7df1e;
-  --web-platform-color: #20232a;
+  --html-color: hsl(12deg 78% 52%);
+  --css-color: hsl(228deg 78% 52%);
+  --js-color: hsl(53deg 93% 54%);
+  --web-platform-color: hsl(222deg 14% 15%);
+
+  /* Components shared styles */
+  --card-bg: var(--sl-color-gray-6, rgb(35 38 47));
+  --card-border: var(--sl-color-gray-5, rgb(36 41 46));
+  --input-bg: var(--sl-color-black, black);
+  --input-border: var(--sl-color-gray-4, rgb(92 107 192));
+  --input-border-hover: var(--sl-color-gray-3, rgb(140 158 255));
+  --focus-ring: var(--sl-color-accent, rgb(63 81 181));
 }
 
-.sr-only {
-	position: absolute;
-	width: 1px;
-	height: 1px;
-	padding: 0;
-	margin: -1px;
-	overflow: hidden;
-	clip: rect(0, 0, 0, 0);
-	white-space: nowrap;
-	border-width: 0;
+/* Shared Utility Classes */
+.panel {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 0.5rem;
+}
+
+.formControl {
+  padding-block: 0.5rem;
+  padding-inline: 1rem;
+  border-radius: 0.25rem;
+  border: 1px solid var(--input-border);
+  background-color: var(--input-bg);
+  color: var(--sl-color-white, white);
+  font-size: 0.95rem;
+}
+
+.formSelect {
+  padding-inline-end: 2rem;
+  cursor: pointer;
+}
+
+@media (hover: hover) {
+  .formControl:hover,
+  .formSelect:hover {
+    border-color: var(--input-border-hover);
+  }
+}
+
+.formControl:focus,
+.formSelect:focus {
+  border-color: var(--focus-ring);
+  outline: none;
 }
 
 body {
-	margin: 0;
-	display: flex;
-	/* align-items: center; */
-	min-height: 100vh;
+  margin: 0;
+  display: flex;
+
+  /* align-items: center; */
+  min-block-size: 100vh;
   justify-content: center;
 }
 
 #app {
-	max-width: 1280px;
-	width: 100%;
-	margin: 0 auto;
-	/* text-align: center; */
+  max-inline-size: 1280px;
+  inline-size: 100%;
+  margin-block: 0;
+  margin-inline: auto;
   padding: 2rem;
 }
 
 @media (prefers-color-scheme: dark) {
-	:root {
-		color: #ccc;
-		background-color: #1a1a1a;
-	}
+  :root {
+    color: hsl(0deg 0% 80%);
+    background-color: hsl(0deg 0% 10%);
+  }
 }

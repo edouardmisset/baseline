@@ -1,44 +1,51 @@
-import { h } from 'preact';
-import styles from './FeatureCard.module.css';
-import { FeatureData } from '../types';
-import BaselineStatus from './BaselineStatus';
-import { useState } from 'preact/hooks';
+import { useState } from 'preact/hooks'
+import type { FeatureData } from '../types'
+import BaselineStatus from './BaselineStatus'
+import styles from './FeatureCard.module.css'
 
 interface Props {
-  feature: FeatureData;
-  isStarred: boolean;
-  onToggleStar: (id: string) => void;
+  feature: FeatureData
+  isStarred: boolean
+  onToggleStar: (id: string) => void
 }
 
-export default function FeatureCard({ feature, isStarred, onToggleStar }: Props) {
-  const { id, name, description, category, status, date } = feature;
-  const [animating, setAnimating] = useState(false);
+export default function FeatureCard({
+  feature,
+  isStarred,
+  onToggleStar,
+}: Props) {
+  const { id, name, description, category, status, date } = feature
+  const [animating, setAnimating] = useState(false)
 
   const handleStarClick = (e: Event) => {
-    e.stopPropagation();
-    onToggleStar(id);
-    setAnimating(true);
-    setTimeout(() => setAnimating(false), 300);
-  };
+    e.stopPropagation()
+    onToggleStar(id)
+    setAnimating(true)
+    setTimeout(() => setAnimating(false), 300)
+  }
 
   const handleMdnClick = (e: Event) => {
-    e.stopPropagation();
-    window.open(`https://developer.mozilla.org/en-US/search?q=${encodeURIComponent(name)}`, '_blank');
-  };
+    e.stopPropagation()
+    window.open(
+      `https://developer.mozilla.org/en-US/search?q=${encodeURIComponent(name)}`,
+      '_blank',
+    )
+  }
 
   return (
     <div
-      class={`${styles['feature-card']} feature-card`}
+      class={`${styles.featureCard} feature-card`}
       data-id={id}
       data-category={category}
       data-status={status}
       data-date={date}
     >
-      <div class={styles['feature-header']}>
+      <div class={styles.featureHeader}>
         <h3>{name}</h3>
-        <div class={styles['actions']}>
+        <div class={styles.actions}>
           <button
-            class={`${styles['star-btn']} star-btn`}
+            type="button"
+            class={`${styles.starBtn} star-btn`}
             title="Star this feature"
             aria-label={`Star ${name}`}
             aria-pressed={isStarred ? 'true' : 'false'}
@@ -46,23 +53,26 @@ export default function FeatureCard({ feature, isStarred, onToggleStar }: Props)
             onClick={handleStarClick}
           >
             <svg
+              aria-hidden="true"
               width="20"
               height="20"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
               strokeWidth="2"
-              class={styles['star-icon']}
+              class={styles.starIcon}
             >
               <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
             </svg>
           </button>
           <button
-            class={`${styles['mdn-search-btn']} mdn-search-btn`}
+            type="button"
+            class={`${styles.mdnSearchBtn} mdn-search-btn`}
             title="Search on MDN"
             onClick={handleMdnClick}
           >
             <svg
+              aria-hidden="true"
               width="20"
               height="20"
               viewBox="0 0 24 24"
@@ -76,16 +86,16 @@ export default function FeatureCard({ feature, isStarred, onToggleStar }: Props)
           </button>
         </div>
         <span
-          class={`${styles['category-badge']} category-badge`}
+          class={`${styles.categoryBadge} category-badge`}
           data-category={category}
         >
           {category}
         </span>
       </div>
-      <p class={styles['feature-description']}>{description}</p>
-      <div class={styles['feature-status']}>
+      <p class={styles.featureDescription}>{description}</p>
+      <div class={styles.featureStatus}>
         <BaselineStatus id={id} />
       </div>
     </div>
-  );
+  )
 }

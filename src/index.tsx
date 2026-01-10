@@ -1,6 +1,7 @@
-import { render } from 'preact';
-import './style.css';
-import FeatureDashboard from './components/FeatureDashboard';
+import { render } from 'preact'
+import 'baseline-status'
+import './style.css'
+import FeatureDashboard from './components/FeatureDashboard'
 
 /**
  * A list of web features to check the baseline status for.
@@ -71,16 +72,17 @@ export const WEB_FEATURES = [
   'user-pseudos',
   'view-transitions',
   'where',
-] as const satisfies readonly string[]
-
+] as const satisfies string[]
 
 export function App() {
-	return (
-		<div>
-      <h1 style={{textAlign: 'center', marginBottom: '40px'}}>Web Features Dashboard</h1>
+  return (
+    <div>
+      <h1 style={{ textAlign: 'center', marginBottom: '40px' }}>
+        Web Features Dashboard
+      </h1>
       <FeatureDashboard featureIds={WEB_FEATURES} />
     </div>
-	);
+  )
 }
 
-render(<App />, document.getElementById('app'));
+render(<App />, document.getElementById('app'))

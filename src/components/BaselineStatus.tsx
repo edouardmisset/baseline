@@ -1,20 +1,15 @@
-import { h } from 'preact';
-import { useEffect, useRef } from 'preact/hooks';
-
-declare global {
+declare module 'preact' {
   namespace JSX {
     interface IntrinsicElements {
-      'baseline-status': { featureId: string };
+      'baseline-status': { featureId: string } & JSX.HTMLAttributes<HTMLElement>
     }
   }
 }
 
 interface Props {
-  id: string;
+  id: string
 }
 
 export default function BaselineStatus({ id }: Props) {
-  return (
-    <baseline-status featureId={id}></baseline-status>
-  );
+  return <baseline-status featureId={id}></baseline-status>
 }
