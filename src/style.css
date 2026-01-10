@@ -1,0 +1,72 @@
+:root {
+	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+	line-height: 1.5;
+	font-weight: 400;
+
+	color: var(--sl-color-white);
+	background-color: var(--sl-color-bg);
+
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-text-size-adjust: 100%;
+
+  /* Starlight Theme Shim */
+  --sl-color-white: #ffffff;
+  --sl-color-gray-1: #eceef1;
+  --sl-color-gray-2: #c0c2c7;
+  --sl-color-gray-3: #888b96;
+  --sl-color-gray-4: #545861;
+  --sl-color-gray-5: #353841;
+  --sl-color-gray-6: #24262e;
+  --sl-color-black: #17181c;
+  
+  --sl-color-accent: #a37df9;
+  --sl-color-accent-low: #281d3d;
+  --sl-color-bg: #17181c;
+  --sl-nav-height: 0px;
+
+  --sl-color-yellow-high: #ffea00;
+
+  /* Category Colors */
+  --html-color: #e44d26;
+  --css-color: #264de4;
+  --js-color: #f7df1e;
+  --web-platform-color: #20232a;
+}
+
+.sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border-width: 0;
+}
+
+body {
+	margin: 0;
+	display: flex;
+	/* align-items: center; */
+	min-height: 100vh;
+  justify-content: center;
+}
+
+#app {
+	max-width: 1280px;
+	width: 100%;
+	margin: 0 auto;
+	/* text-align: center; */
+  padding: 2rem;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		color: #ccc;
+		background-color: #1a1a1a;
+	}
+}
