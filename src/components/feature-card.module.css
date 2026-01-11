@@ -11,7 +11,7 @@
 
 @media (hover: hover) {
   .featureCard:hover {
-    border-color: var(--color-accent-55);
+    border-color: currentcolor;
     transform: translateY(-2px);
   }
 }
@@ -144,6 +144,22 @@
 
 .categoryBadge[data-category="Web Platform"] {
   --brand-color: var(--color-category-web);
+}
+
+:has([data-category="HTML"]) {
+  color: var(--color-category-html);
+}
+
+:has([data-category="CSS"]) {
+  color: var(--color-category-css);
+}
+
+:has([data-category="JavaScript"]) {
+  color: var(--color-category-js);
+}
+
+:has([data-category="Web Platform"]) {
+  color: var(--color-category-web);
 }
 
 .featureDescription {
