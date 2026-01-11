@@ -88,6 +88,10 @@
 
 .selectPositioner {
   z-index: 100;
+  max-block-size: max(60%, 30rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
 }
 
 .selectPopup {
