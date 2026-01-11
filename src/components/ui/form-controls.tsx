@@ -1,4 +1,4 @@
-import { Button, Field, Input, Select } from '@base-ui/react'
+import { Button, Combobox, Field, Input, Select } from '@base-ui/react'
 import type { ComponentChildren } from 'preact'
 import styles from './form-controls.module.css'
 
@@ -115,27 +115,16 @@ export function MultiSelectField({
     const valueHasAll = value.includes('all')
     const nextHasAll = next.includes('all')
 
-    // User is explicitly toggling "all"
     if (nextHasAll !== valueHasAll) {
       if (nextHasAll) {
-        // User just selected "all" - deselect everything else
         onValueChange(['all'])
       } else {
-        // User just deselected "all" - keep other selections or default to "all"
         onValueChange(next.length > 0 ? next : ['all'])
       }
     } else if (valueHasAll && nextHasAll) {
-      // "all" is still in both - user clicked on specific items while "all" was selected
-      // Deselect "all" and keep only the specific items
       const otherItems = next.filter(item => item !== 'all')
-      if (otherItems.length > 0) {
-        onValueChange(otherItems)
-      } else {
-        // Only "all" remains, keep it
-        onValueChange(['all'])
-      }
+      onValueChange(otherItems.length > 0 ? otherItems : ['all'])
     } else {
-      // Neither has "all" - just update with selected items, or default to "all" if empty
       onValueChange(next.length > 0 ? next : ['all'])
     }
   }
@@ -168,6 +157,60 @@ export function MultiSelectField({
           </Select.Positioner>
         </Select.Portal>
       </Select.Root>
+    </Field.Root>
+  )
+}
+
+interface ComboboxFieldProps {
+  label: string
+  value: string
+  options: ReadonlyArray<SelectOption>
+  placeholder?: string
+  className?: string
+  error?: string | null
+  onValueChange: (next: string) => void
+}
+
+export function ComboboxField({
+  label,
+  value,
+  options,
+  placeholder,
+  className,
+  error,
+  onValueChange,
+}: ComboboxFieldProps) {
+  return (
+    <Field.Root
+      className={`${styles.field}${className ? ` ${className}` : ''}`}
+    >
+      <Field.Label className={styles.label}>{label}</Field.Label>
+      <Combobox.Root value={value} onValueChange={v => onValueChange(v ?? '')}>
+        <div className={styles.comboContainer}>
+          <Combobox.Input className={styles.input} placeholder={placeholder} />
+          <Combobox.Trigger className={styles.comboIconTrigger}>
+            <Combobox.Icon aria-hidden="true">▾</Combobox.Icon>
+          </Combobox.Trigger>
+        </div>
+        <Combobox.Portal>
+          <Combobox.Positioner className={styles.selectPositioner}>
+            <Combobox.Popup className={styles.selectPopup}>
+              <Combobox.List>
+                {options.map(opt => (
+                  <Combobox.Item
+                    key={opt.value}
+                    className={styles.selectItem}
+                    value={opt.value}
+                  >
+                    {opt.label}
+                  </Combobox.Item>
+                ))}
+              </Combobox.List>
+            </Combobox.Popup>
+          </Combobox.Positioner>
+        </Combobox.Portal>
+      </Combobox.Root>
+      {error && <Field.Error className={styles.error}>{error}</Field.Error>}
     </Field.Root>
   )
 }

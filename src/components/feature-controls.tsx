@@ -1,9 +1,12 @@
+import { useQuery } from '@tanstack/react-query'
 import { useMemo, useState } from 'preact/hooks'
+import { fetchAllFeatureIds } from '../api/webstatus'
 import type { FavoritesFilter, SortOrder } from '../hooks/use-features'
 import { uniqueSortedStrings } from '../lib/unique-sorted'
 import type { FeatureData } from '../types'
 import styles from './feature-controls.module.css'
 import {
+  ComboboxField,
   MultiSelectField,
   PrimaryButton,
   SelectField,
@@ -18,8 +21,8 @@ const FAVORITES_OPTIONS = [
 const SORT_OPTIONS = [
   { value: 'newest', label: 'Newest / Upcoming' },
   { value: 'oldest', label: 'Oldest / Stable' },
-  { value: 'az', label: 'A–Z (Name)' },
-  { value: 'za', label: 'Z–A (Name)' },
+  { value: 'az', label: 'A-Z (Name)' },
+  { value: 'za', label: 'Z-A (Name)' },
 ] as const
 
 interface Props {
@@ -72,10 +75,20 @@ export function FeatureControls({
     [statuses],
   )
 
-  const featureIdSuggestions = useMemo(
-    () => uniqueSortedStrings(suggestedFeatureIds),
-    [suggestedFeatureIds],
-  )
+  // Load full feature IDs from API; fallback to provided list if empty
+  const { data: allFeatureIds = [] } = useQuery<string[]>({
+    queryKey: ['feature-id-suggestions'],
+    queryFn: fetchAllFeatureIds,
+    staleTime: 1000 * 60 * 60,
+    gcTime: 1000 * 60 * 60 * 6,
+    refetchOnWindowFocus: false,
+  })
+
+  const featureIdSuggestions = useMemo(() => {
+    const source =
+      allFeatureIds.length > 0 ? allFeatureIds : suggestedFeatureIds
+    return uniqueSortedStrings(source)
+  }, [allFeatureIds, suggestedFeatureIds])
 
   const [newFeatureId, setNewFeatureId] = useState('')
   const [newFeatureIdError, setNewFeatureIdError] = useState<string | null>(
@@ -139,11 +152,11 @@ export function FeatureControls({
         />
 
         <form className={styles.addFeatureForm} onSubmit={onSubmitNewFeature}>
-          <TextField
+          <ComboboxField
             label="Add feature id"
-            placeholder="e.g. anchor-positioning"
-            list="feature-id-suggestions"
+            placeholder="Search feature id…"
             value={newFeatureId}
+            options={featureIdSuggestions.map(id => ({ value: id, label: id }))}
             error={newFeatureIdError}
             onValueChange={v => {
               setNewFeatureId(v)
@@ -152,12 +165,6 @@ export function FeatureControls({
           />
 
           <PrimaryButton type="submit">Add</PrimaryButton>
-
-          <datalist id="feature-id-suggestions">
-            {featureIdSuggestions.map(id => (
-              <option key={id} value={id} />
-            ))}
-          </datalist>
         </form>
       </div>
     </div>

@@ -48,6 +48,33 @@
   cursor: pointer;
 }
 
+/* Combobox inline trigger icon, single input look */
+.comboContainer {
+  position: relative;
+}
+
+.comboIconTrigger {
+  position: absolute;
+  inset-inline-end: var(--space-3);
+  inset-block-start: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+  border: 0;
+  background: transparent;
+  color: var(--color-text);
+  opacity: 0.85;
+}
+
+.comboIconTrigger:focus-visible {
+  outline: 2px solid hsl(var(--color-accent-hsl) / 55%);
+  outline-offset: 2px;
+}
+
 .selectTrigger:focus-visible {
   outline: 2px solid hsl(var(--color-accent-hsl) / 55%);
   outline-offset: 2px;

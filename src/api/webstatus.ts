@@ -87,3 +87,15 @@ export async function fetchFeature(id: string): Promise<FeatureData> {
   const [result] = await fetchFeatures([id])
   return result
 }
+
+export async function fetchAllFeatureIds(): Promise<string[]> {
+  try {
+    const res = await fetch(`${API_BASE}/features?page_size=10000`)
+    if (!res.ok) return []
+    const json = await res.json()
+    const data = (json?.data ?? []) as Array<{ feature_id: string }>
+    return data.map(item => item.feature_id)
+  } catch {
+    return []
+  }
+}
