@@ -3,7 +3,12 @@ import type { FavoritesFilter, SortOrder } from '../hooks/use-features'
 import { uniqueSortedStrings } from '../lib/unique-sorted'
 import type { FeatureData } from '../types'
 import styles from './feature-controls.module.css'
-import { PrimaryButton, SelectField, TextField } from './ui'
+import {
+  MultiSelectField,
+  PrimaryButton,
+  SelectField,
+  TextField,
+} from './ui/form-controls'
 
 const FAVORITES_OPTIONS = [
   { value: 'all', label: 'All' },
@@ -21,15 +26,15 @@ interface Props {
   features: FeatureData[]
   filters: {
     search: string
-    category: string
-    status: string
+    category: string[]
+    status: string[]
     favorites: FavoritesFilter
     sort: SortOrder
   }
   setFilters: {
     setSearch: (v: string) => void
-    setCategory: (v: string) => void
-    setStatus: (v: string) => void
+    setCategory: (v: string[]) => void
+    setStatus: (v: string[]) => void
     setFavorites: (v: FavoritesFilter) => void
     setSort: (v: SortOrder) => void
   }
@@ -103,18 +108,16 @@ export function FeatureControls({
           onValueChange={setFilters.setSearch}
         />
 
-        <SelectField
+        <MultiSelectField
           label="Category"
           value={filters.category}
-          defaultValue="all"
           options={categoryOptions}
           onValueChange={setFilters.setCategory}
         />
 
-        <SelectField
+        <MultiSelectField
           label="Status"
           value={filters.status}
-          defaultValue="all"
           options={statusOptions}
           onValueChange={setFilters.setStatus}
         />

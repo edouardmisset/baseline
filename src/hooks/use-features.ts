@@ -11,8 +11,8 @@ export type FavoritesFilter = 'all' | 'starred'
 
 export interface FeatureFilters {
   search: string
-  category: string
-  status: string
+  category: string[]
+  status: string[]
   favorites: FavoritesFilter
   sort: SortOrder
 }
@@ -46,8 +46,8 @@ export function useFeatures({ featureIds: baseFeatureIds }: UseFeaturesProps) {
 
   // Filters State
   const [search, setSearch] = useState('')
-  const [category, setCategory] = useState('all')
-  const [status, setStatus] = useState('all')
+  const [category, setCategory] = useState<string[]>(['all'])
+  const [status, setStatus] = useState<string[]>(['all'])
   const [favorites, setFavorites] = useState<FavoritesFilter>('all')
   const [sort, setSort] = useState<SortOrder>('newest')
 
@@ -77,8 +77,22 @@ export function useFeatures({ featureIds: baseFeatureIds }: UseFeaturesProps) {
       .filter(f => {
         if (search && !f.name.toLowerCase().includes(search.toLowerCase()))
           return false
-        if (category !== 'all' && f.category !== category) return false
-        if (status !== 'all' && f.status !== status) return false
+        // If "all" is selected, include all categories. If nothing selected, exclude all.
+        if (
+          category.length > 0 &&
+          !category.includes('all') &&
+          !category.includes(f.category)
+        )
+          return false
+        if (category.length === 0) return false
+        // If "all" is selected, include all statuses. If nothing selected, exclude all.
+        if (
+          status.length > 0 &&
+          !status.includes('all') &&
+          !status.includes(f.status)
+        )
+          return false
+        if (status.length === 0) return false
         if (favorites === 'starred' && !starred.has(f.id)) return false
         return true
       })

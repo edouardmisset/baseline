@@ -75,7 +75,7 @@ export async function fetchFeatures(ids: string[]): Promise<FeatureData[]> {
 
   const chunkSize = 40
   const chunks: string[][] = []
-  for (let i = 0;i < ids.length;i += chunkSize) {
+  for (let i = 0; i < ids.length; i += chunkSize) {
     chunks.push(ids.slice(i, i + chunkSize))
   }
 
