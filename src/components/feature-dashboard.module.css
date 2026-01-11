@@ -38,7 +38,7 @@
   display: flex;
   align-items: center;
   gap: 0.5em;
-  border-block-end: 2px solid hsl(var(--color-border-hsl) / 55%);
+  border-block-end: 2px solid var(--color-border-55);
   cursor: pointer;
   list-style: none;
   isolation: isolate;
@@ -88,7 +88,7 @@
   text-align: center;
   padding: var(--space-8);
   color: var(--color-muted);
-  border: 1px dashed hsl(var(--color-border-hsl) / 80%);
+  border: 1px dashed var(--color-border-80);
   border-radius: var(--radius-5);
   font-style: italic;
 }

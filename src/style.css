@@ -43,35 +43,39 @@
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-out-back: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
-  /* Core colors (HSL channels) */
-  --color-bg-hsl: 230 28% 9%;
-  --color-surface-hsl: 230 22% 14%;
-  --color-border-hsl: 230 18% 26%;
-  --color-text-hsl: 210 40% 98%;
-  --color-muted-hsl: 224 14% 72%;
-  --color-accent-hsl: 260 92% 70%;
-  --color-danger-hsl: 0 84% 64%;
-  --color-gold-hsl: 48 100% 56%;
+  /* Core colors */
+  --color-bg: hsl(230deg 28% 9%);
+  --color-surface: hsl(230deg 22% 14%);
+  --color-border: hsl(230deg 18% 26%);
+  --color-text: hsl(210deg 40% 98% / 96%);
+  --color-muted: hsl(224deg 14% 72% / 90%);
+  --color-accent: hsl(260deg 92% 70%);
+  --color-danger: hsl(0deg 84% 64%);
+  --color-gold: hsl(48deg 100% 56%);
 
-  /* Derived colors */
-  --color-text: hsl(var(--color-text-hsl) / 96%);
-  --color-muted: hsl(var(--color-muted-hsl) / 90%);
-  --color-accent: hsl(var(--color-accent-hsl) / 100%);
-  --color-border: hsl(var(--color-border-hsl) / 70%);
+  /* Color variants using relative color syntax */
+  --color-accent-55: oklch(from var(--color-accent) l c h / 55%);
+  --color-accent-28: oklch(from var(--color-accent) l c h / 28%);
+  --color-accent-25: oklch(from var(--color-accent) l c h / 25%);
+  --color-accent-18: oklch(from var(--color-accent) l c h / 18%);
+  --color-accent-70: oklch(from var(--color-accent) l c h / 70%);
+  --color-surface-52: oklch(from var(--color-surface) l c h / 52%);
+  --color-surface-85: oklch(from var(--color-surface) l c h / 85%);
+  --color-surface-35: oklch(from var(--color-surface) l c h / 35%);
+  --color-border-70: oklch(from var(--color-border) l c h / 70%);
+  --color-border-80: oklch(from var(--color-border) l c h / 80%);
+  --color-border-55: oklch(from var(--color-border) l c h / 55%);
+  --color-border-60: oklch(from var(--color-border) l c h / 60%);
 
   /* Category colors */
-  --color-category-html-hsl: 12 78% 56%;
-  --color-category-css-hsl: 228 78% 60%;
-  --color-category-js-hsl: 48 96% 60%;
-  --color-category-web-hsl: 210 10% 70%;
-  --color-category-html: hsl(var(--color-category-html-hsl) / 100%);
-  --color-category-css: hsl(var(--color-category-css-hsl) / 100%);
-  --color-category-js: hsl(var(--color-category-js-hsl) / 100%);
-  --color-category-web: hsl(var(--color-category-web-hsl) / 100%);
+  --color-category-html: hsl(12deg 78% 52%);
+  --color-category-css: rebeccapurple;
+  --color-category-js: hsl(52deg 84% 63%);
+  --color-category-web: hsl(210deg 10% 70%);
 
   /* Glass */
-  --glass-bg: hsl(var(--color-surface-hsl) / 52%);
-  --glass-border: hsl(var(--color-border-hsl) / 55%);
+  --glass-bg: var(--color-surface-52);
+  --glass-border: var(--color-border-55);
   --glass-backdrop: blur(18px) saturate(1.15);
 
   /* Shadows */
@@ -120,15 +124,11 @@ body {
       hsl(220deg 90% 60% / 12%),
       transparent 55%
     ),
-    linear-gradient(
-      180deg,
-      hsl(var(--color-bg-hsl) / 100%),
-      hsl(230deg 35% 6% / 100%)
-    );
+    linear-gradient(180deg, var(--color-bg), hsl(230deg 35% 6% / 100%));
 }
 
 ::selection {
-  background: hsl(var(--color-accent-hsl) / 28%);
+  background: var(--color-accent-28);
 }
 
 .glass {

@@ -11,7 +11,7 @@
 
 @media (hover: hover) {
   .featureCard:hover {
-    border-color: hsl(var(--color-accent-hsl) / 55%);
+    border-color: var(--color-accent-55);
     transform: translateY(-2px);
   }
 }
@@ -63,7 +63,7 @@
 }
 
 .starBtn[aria-pressed="true"] {
-  color: hsl(var(--color-gold-hsl) / 100%);
+  color: var(--color-gold);
   animation: pop var(--duration-med) var(--ease-out-back);
 }
 
@@ -123,26 +123,27 @@
   font-weight: 600;
 
   /* Brand color logic */
-  background: hsl(var(--brand-hsl, var(--color-accent-hsl)) / 18%);
-  border: 1px solid hsl(var(--brand-hsl, var(--color-accent-hsl)) / 45%);
+  background: oklch(from var(--brand-color, var(--color-accent)) l c h / 18%);
+  border: 1px solid
+    oklch(from var(--brand-color, var(--color-accent)) l c h / 45%);
   color: var(--color-text);
 }
 
 /* Brand Colors */
 .categoryBadge[data-category="HTML"] {
-  --brand-hsl: var(--color-category-html-hsl);
+  --brand-color: var(--color-category-html);
 }
 
 .categoryBadge[data-category="CSS"] {
-  --brand-hsl: var(--color-category-css-hsl);
+  --brand-color: var(--color-category-css);
 }
 
 .categoryBadge[data-category="JavaScript"] {
-  --brand-hsl: var(--color-category-js-hsl);
+  --brand-color: var(--color-category-js);
 }
 
 .categoryBadge[data-category="Web Platform"] {
-  --brand-hsl: var(--color-category-web-hsl);
+  --brand-color: var(--color-category-web);
 }
 
 .featureDescription {

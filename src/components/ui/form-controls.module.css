@@ -19,7 +19,7 @@
   padding-inline: var(--space-3);
   border-radius: var(--radius-4);
   border: 1px solid var(--color-border);
-  background: hsl(var(--color-surface-hsl) / 35%);
+  background: var(--color-surface-35);
   color: var(--color-text);
   box-shadow: var(--shadow-1);
   transition: border-color var(--duration-fast) var(--ease-out);
@@ -36,9 +36,9 @@
 }
 
 .input:focus {
-  outline: 2px solid hsl(var(--color-accent-hsl) / 55%);
+  outline: 2px solid var(--color-accent-55);
   outline-offset: 2px;
-  border-color: hsl(var(--color-accent-hsl) / 70%);
+  border-color: var(--color-accent-70);
 }
 
 .selectTrigger {
@@ -71,14 +71,14 @@
 }
 
 .comboIconTrigger:focus-visible {
-  outline: 2px solid hsl(var(--color-accent-hsl) / 55%);
+  outline: 2px solid var(--color-accent-55);
   outline-offset: 2px;
 }
 
 .selectTrigger:focus-visible {
-  outline: 2px solid hsl(var(--color-accent-hsl) / 55%);
+  outline: 2px solid var(--color-accent-55);
   outline-offset: 2px;
-  border-color: hsl(var(--color-accent-hsl) / 70%);
+  border-color: var(--color-accent-70);
 }
 
 .selectIcon {
@@ -97,8 +97,8 @@
 .selectPopup {
   padding: var(--space-2);
   border-radius: var(--radius-5);
-  background: hsl(var(--color-surface-hsl) / 85%);
-  border: 1px solid hsl(var(--color-border-hsl) / 60%);
+  background: var(--color-surface-85);
+  border: 1px solid var(--color-border-60);
   box-shadow: var(--shadow-3);
   backdrop-filter: blur(18px) saturate(1.1);
   isolation: isolate;
@@ -113,19 +113,19 @@
 }
 
 .selectItem[data-highlighted] {
-  background: hsl(var(--color-accent-hsl) / 18%);
+  background: var(--color-accent-18);
 }
 
 .selectItem[data-selected] {
-  background: hsl(var(--color-accent-hsl) / 25%);
+  background: var(--color-accent-25);
 }
 
 .button {
   padding-block: var(--space-2);
   padding-inline: var(--space-4);
   border-radius: var(--radius-4);
-  border: 1px solid hsl(var(--color-accent-hsl) / 55%);
-  background: hsl(var(--color-accent-hsl) / 25%);
+  border: 1px solid var(--color-accent-55);
+  background: var(--color-accent-25);
   color: var(--color-text);
   box-shadow: var(--shadow-1);
   cursor: pointer;
@@ -136,7 +136,7 @@
 
 @media (hover: hover) {
   .button:hover {
-    background: hsl(var(--color-accent-hsl) / 32%);
+    background: oklch(from var(--color-accent) l c h / 32%);
   }
 }
 
@@ -145,7 +145,7 @@
 }
 
 .button:focus-visible {
-  outline: 2px solid hsl(var(--color-accent-hsl) / 55%);
+  outline: 2px solid var(--color-accent-55);
   outline-offset: 2px;
 }
 
