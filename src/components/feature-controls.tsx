@@ -1,5 +1,21 @@
+import { useMemo, useState } from 'preact/hooks'
+import type { FavoritesFilter, SortOrder } from '../hooks/use-feature-filters'
+import { uniqueSortedStrings } from '../lib/unique-sorted'
 import type { FeatureData } from '../types'
 import styles from './feature-controls.module.css'
+import { PrimaryButton, SelectField, TextField } from './ui'
+
+const FAVORITES_OPTIONS = [
+  { value: 'all', label: 'All' },
+  { value: 'starred', label: 'Starred only' },
+] as const
+
+const SORT_OPTIONS = [
+  { value: 'newest', label: 'Newest / Upcoming' },
+  { value: 'oldest', label: 'Oldest / Stable' },
+  { value: 'az', label: 'A–Z (Name)' },
+  { value: 'za', label: 'Z–A (Name)' },
+] as const
 
 interface Props {
   features: FeatureData[]
@@ -7,116 +23,139 @@ interface Props {
     search: string
     category: string
     status: string
-    filterStarred: string
-    sort: string
+    favorites: FavoritesFilter
+    sort: SortOrder
   }
   setFilters: {
     setSearch: (v: string) => void
     setCategory: (v: string) => void
     setStatus: (v: string) => void
-    setFilterStarred: (v: string) => void
-    setSort: (v: string) => void
+    setFavorites: (v: FavoritesFilter) => void
+    setSort: (v: SortOrder) => void
   }
+
+  suggestedFeatureIds: string[]
+  onAddFeatureId: (id: string) => void
 }
 
-export default function FeatureControls({
+export function FeatureControls({
   features,
   filters,
   setFilters,
+  suggestedFeatureIds,
+  onAddFeatureId,
 }: Props) {
-  const categories = Array.from(new Set(features.map(f => f.category))).sort()
-  const statuses = Array.from(new Set(features.map(f => f.status))).sort()
+  const categories = uniqueSortedStrings(features.map(f => f.category))
+  const statuses = uniqueSortedStrings(features.map(f => f.status))
+
+  const categoryOptions = useMemo(
+    () => [
+      { value: 'all', label: 'All' },
+      ...categories.map(c => ({ value: c, label: c })),
+    ],
+    [categories],
+  )
+
+  const statusOptions = useMemo(
+    () => [
+      { value: 'all', label: 'All' },
+      ...statuses.map(s => ({
+        value: s,
+        label: s.charAt(0).toUpperCase() + s.slice(1),
+      })),
+    ],
+    [statuses],
+  )
+
+  const featureIdSuggestions = useMemo(
+    () => uniqueSortedStrings(suggestedFeatureIds),
+    [suggestedFeatureIds],
+  )
+
+  const [newFeatureId, setNewFeatureId] = useState('')
+  const [newFeatureIdError, setNewFeatureIdError] = useState<string | null>(
+    null,
+  )
+
+  const onSubmitNewFeature = (e: Event) => {
+    e.preventDefault()
+    const next = newFeatureId.trim()
+    if (!next) return
+
+    if (!featureIdSuggestions.includes(next)) {
+      setNewFeatureIdError('Pick a feature id from the list.')
+      return
+    }
+
+    onAddFeatureId(next)
+    setNewFeatureId('')
+    setNewFeatureIdError(null)
+  }
 
   return (
-    <div class={`panel ${styles.controlsContainer}`}>
-      <div class={`${styles.controlGroup} ${styles.searchGroup}`}>
-        <label class={styles.label} htmlFor="search-input">
-          Search
-        </label>
-        <input
-          type="text"
-          id="search-input"
-          class="formControl"
-          placeholder="Filter by name..."
+    <div className={styles.controlsSticky}>
+      <div className={`${styles.controlsContainer} glass`}>
+        <TextField
+          className={styles.searchGroup}
+          label="Search"
+          placeholder="Filter by name…"
           value={filters.search}
-          onInput={e =>
-            setFilters.setSearch((e.target as HTMLInputElement).value)
-          }
+          onValueChange={setFilters.setSearch}
         />
-      </div>
 
-      <div class={styles.controlGroup}>
-        <label class={styles.label} htmlFor="category-filter">
-          Category
-        </label>
-        <select
-          id="category-filter"
-          class="formControl formSelect"
+        <SelectField
+          label="Category"
           value={filters.category}
-          onChange={e =>
-            setFilters.setCategory((e.target as HTMLSelectElement).value)
-          }
-        >
-          <option value="all">All</option>
-          {categories.map(cat => (
-            <option value={cat}>{cat}</option>
-          ))}
-        </select>
-      </div>
+          defaultValue="all"
+          options={categoryOptions}
+          onValueChange={setFilters.setCategory}
+        />
 
-      <div class={styles.controlGroup}>
-        <label class={styles.label} htmlFor="status-filter">
-          Status
-        </label>
-        <select
-          id="status-filter"
-          class="formControl formSelect"
+        <SelectField
+          label="Status"
           value={filters.status}
-          onChange={e =>
-            setFilters.setStatus((e.target as HTMLSelectElement).value)
-          }
-        >
-          <option value="all">All</option>
-          {statuses.map(s => (
-            <option value={s}>{s.charAt(0).toUpperCase() + s.slice(1)}</option>
-          ))}
-        </select>
-      </div>
+          defaultValue="all"
+          options={statusOptions}
+          onValueChange={setFilters.setStatus}
+        />
 
-      <div class={styles.controlGroup}>
-        <label class={styles.label} htmlFor="starred-filter">
-          Favorites
-        </label>
-        <select
-          id="starred-filter"
-          class="formControl formSelect"
-          value={filters.filterStarred}
-          onChange={e =>
-            setFilters.setFilterStarred((e.target as HTMLSelectElement).value)
-          }
-        >
-          <option value="all">All</option>
-          <option value="starred">Starred Only</option>
-        </select>
-      </div>
+        <SelectField
+          label="Favorites"
+          value={filters.favorites}
+          defaultValue="all"
+          options={FAVORITES_OPTIONS}
+          onValueChange={v => setFilters.setFavorites(v as FavoritesFilter)}
+        />
 
-      <div class={styles.controlGroup}>
-        <label class={styles.label} htmlFor="sort-order">
-          Sort By
-        </label>
-        <select
-          id="sort-order"
-          class="formControl formSelect"
+        <SelectField
+          label="Sort"
           value={filters.sort}
-          onChange={e =>
-            setFilters.setSort((e.target as HTMLSelectElement).value)
-          }
-        >
-          <option value="newest">Newest / Upcoming</option>
-          <option value="oldest">Oldest / Stable</option>
-          <option value="az">A–Z (Name)</option>
-          <option value="za">Z–A (Name)</option>
-        </select>
+          defaultValue="newest"
+          options={SORT_OPTIONS}
+          onValueChange={v => setFilters.setSort(v as SortOrder)}
+        />
+
+        <form className={styles.addFeatureForm} onSubmit={onSubmitNewFeature}>
+          <TextField
+            label="Add feature id"
+            placeholder="e.g. anchor-positioning"
+            list="feature-id-suggestions"
+            value={newFeatureId}
+            error={newFeatureIdError}
+            onValueChange={v => {
+              setNewFeatureId(v)
+              setNewFeatureIdError(null)
+            }}
+          />
+
+          <PrimaryButton type="submit">Add</PrimaryButton>
+
+          <datalist id="feature-id-suggestions">
+            {featureIdSuggestions.map(id => (
+              <option key={id} value={id} />
+            ))}
+          </datalist>
+        </form>
       </div>
     </div>
   )

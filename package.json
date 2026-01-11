@@ -13,7 +13,10 @@
     "check": "biome check --write . && pnpm style:lint:fix && pnpm typecheck"
   },
   "dependencies": {
-    "baseline-status": "^1.1.1",
+    "@base-ui/react": "^1.0.0",
+    "@tanstack/react-query": "^5.90.16",
+    "@tanstack/react-query-devtools": "^5.91.2",
+    "baseline-status": "1.0.11",
     "preact": "^10.26.9",
     "stylelint": "^16.26.1",
     "stylelint-config-standard": "^39.0.1",
@@ -26,5 +29,13 @@
     "@preact/preset-vite": "^2.10.2",
     "typescript": "^5.9.3",
     "vite": "^7.0.4"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "react",
+        "react-dom"
+      ]
+    }
   }
 }

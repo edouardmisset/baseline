@@ -10,6 +10,6 @@ interface Props {
   id: string
 }
 
-export default function BaselineStatus({ id }: Props) {
+export function BaselineStatus({ id }: Props) {
   return <baseline-status featureId={id}></baseline-status>
 }

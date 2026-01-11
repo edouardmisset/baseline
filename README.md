@@ -1,15 +1,23 @@
-# `create-preact`
+# Baseline dashboard
 
-<h2 align="center">
-  <img height="256" width="256" src="./src/assets/preact.svg">
-</h2>
+A small dashboard for exploring **Baseline** statuses for Web Platform features, powered by the `baseline-status` web component and data from <https://webstatus.dev>.
 
-<h3 align="center">Get started using Preact and Vite!</h3>
+## Features
 
-## Getting Started
+- Search, filter (category/status), favorites, and sorting
+- Add extra feature ids from the built-in list (persisted in `localStorage`)
+- Star/unstar features (persisted in `localStorage`)
 
--   `npm run dev` - Starts a dev server at http://localhost:5173/
+## Tech
 
--   `npm run build` - Builds for production, emitting to `dist/`
+- Preact + Vite
+- TanStack Query (`@tanstack/react-query`) for fetching and caching
+- Base UI (`@base-ui/react`) for form controls
+- Design tokens in [src/style.css](src/style.css) (HSL colors, spacing, radii, motion)
 
--   `npm run preview` - Starts a server at http://localhost:4173/ to test production build locally
+## Development
+
+- `pnpm dev` – start the dev server
+- `pnpm build` – build for production (outputs to `dist/`)
+- `pnpm preview` – preview the production build locally
+- `pnpm check` – format/lint/stylelint/typecheck

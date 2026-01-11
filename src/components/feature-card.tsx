@@ -1,6 +1,5 @@
-import { useState } from 'preact/hooks'
 import type { FeatureData } from '../types'
-import BaselineStatus from './baseline-status'
+import { BaselineStatus } from './baseline-status'
 import styles from './feature-card.module.css'
 
 interface Props {
@@ -9,19 +8,12 @@ interface Props {
   onToggleStar: (id: string) => void
 }
 
-export default function FeatureCard({
-  feature,
-  isStarred,
-  onToggleStar,
-}: Props) {
-  const { id, name, description, category, status, date } = feature
-  const [animating, setAnimating] = useState(false)
+export function FeatureCard({ feature, isStarred, onToggleStar }: Props) {
+  const { id, name, description, category } = feature
 
   const handleStarClick = (e: Event) => {
     e.stopPropagation()
     onToggleStar(id)
-    setAnimating(true)
-    setTimeout(() => setAnimating(false), 300)
   }
 
   const handleMdnClick = (e: Event) => {
@@ -33,23 +25,16 @@ export default function FeatureCard({
   }
 
   return (
-    <div
-      class={`${styles.featureCard} feature-card`}
-      data-id={id}
-      data-category={category}
-      data-status={status}
-      data-date={date}
-    >
+    <div class={`${styles.featureCard} glass`}>
       <div class={styles.featureHeader}>
         <h3>{name}</h3>
         <div class={styles.actions}>
           <button
             type="button"
-            class={`${styles.starBtn} star-btn`}
+            class={styles.starBtn}
             title="Star this feature"
             aria-label={`Star ${name}`}
             aria-pressed={isStarred ? 'true' : 'false'}
-            data-animating={animating ? 'true' : undefined}
             onClick={handleStarClick}
           >
             <svg
@@ -60,14 +45,13 @@ export default function FeatureCard({
               fill="none"
               stroke="currentColor"
               strokeWidth="2"
-              class={styles.starIcon}
             >
               <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
             </svg>
           </button>
           <button
             type="button"
-            class={`${styles.mdnSearchBtn} mdn-search-btn`}
+            class={styles.mdnSearchBtn}
             title="Search on MDN"
             onClick={handleMdnClick}
           >
@@ -85,10 +69,7 @@ export default function FeatureCard({
             </svg>
           </button>
         </div>
-        <span
-          class={`${styles.categoryBadge} category-badge`}
-          data-category={category}
-        >
+        <span class={styles.categoryBadge} data-category={category}>
           {category}
         </span>
       </div>

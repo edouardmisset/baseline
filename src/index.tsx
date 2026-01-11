@@ -1,87 +1,27 @@
 import { render } from 'preact'
 import 'baseline-status'
 import './style.css'
-import FeatureDashboard from './components/feature-dashboard'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { FeatureDashboard } from './components/feature-dashboard'
+import { WEB_FEATURES } from './constants/web-features'
 
-/**
- * A list of web features to check the baseline status for.
- * Source: https://webstatus.dev/
- */
-export const WEB_FEATURES = [
-  'accent-color',
-  'anchor-positioning',
-  'array-by-copy',
-  'array-group',
-  'attr',
-  'backdrop-filter',
-  'backdrop',
-  'calc-size',
-  'cascade-layers',
-  'color-mix',
-  'container-queries',
-  'content-visibility',
-  'contrast-color',
-  'customizable-select',
-  'datalist',
-  'details-name',
-  'dialog-closedby',
-  'dialog',
-  'field-sizing',
-  'focus-visible',
-  'function',
-  'gradient-interpolation',
-  'hanging-punctuation',
-  'has',
-  'if',
-  'intl-duration-format',
-  'intl-list-format',
-  'intl-relative-time-format',
-  'invoker-commands',
-  'is',
-  'isolation',
-  'light-dark',
-  'logical-properties',
-  'masonry',
-  'min-max-clamp',
-  'modal',
-  'nesting',
-  'not',
-  'oklab',
-  'overscroll-behavior',
-  'popover-hint',
-  'popover',
-  'prefers-color-scheme',
-  'registered-custom-properties',
-  'relative-color',
-  'scope',
-  'scroll-buttons',
-  'scroll-driven-animations',
-  'scroll-markers',
-  'search',
-  'set-methods',
-  'share',
-  'starting-style',
-  'subgrid',
-  'supports-at-rule',
-  'target-text',
-  'temporal',
-  'text-wrap-balance',
-  'text-wrap-pretty',
-  'top-level-await',
-  'transition-behavior',
-  'user-pseudos',
-  'view-transitions',
-  'where',
-] as const satisfies string[]
+const queryClient = new QueryClient()
 
 export function App() {
   return (
-    <div>
-      <h1 style={{ textAlign: 'center', marginBottom: '40px' }}>
-        Web Features Dashboard
-      </h1>
-      <FeatureDashboard featureIds={WEB_FEATURES} />
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <div class="app">
+        <header class="appHeader">
+          <h1 class="appTitle">Baseline feature dashboard</h1>
+          <p class="appSubtitle">
+            Browse Baseline status from webstatus.dev, and star your favorites.
+          </p>
+        </header>
+        <FeatureDashboard featureIds={[...WEB_FEATURES]} />
+      </div>
+      {import.meta.env.DEV && <ReactQueryDevtools initialIsOpen={false} />}
+    </QueryClientProvider>
   )
 }
 

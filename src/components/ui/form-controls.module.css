@@ -1,0 +1,124 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-inline-size: 12rem;
+}
+
+.label {
+  font-size: var(--font-size-1);
+  font-weight: 650;
+  color: var(--color-text);
+}
+
+.input,
+.selectTrigger {
+  inline-size: 100%;
+  gap: var(--space-2);
+  padding-block: var(--space-2);
+  padding-inline: var(--space-3);
+  border-radius: var(--radius-4);
+  border: 1px solid var(--color-border);
+  background: hsl(var(--color-surface-hsl) / 35%);
+  color: var(--color-text);
+  box-shadow: var(--shadow-1);
+  transition: border-color var(--duration-fast) var(--ease-out);
+}
+
+.input {
+  transition:
+    border-color var(--duration-fast) var(--ease-out),
+    background-color var(--duration-fast) var(--ease-out);
+}
+
+.input::placeholder {
+  color: var(--color-muted);
+}
+
+.input:focus {
+  outline: 2px solid hsl(var(--color-accent-hsl) / 55%);
+  outline-offset: 2px;
+  border-color: hsl(var(--color-accent-hsl) / 70%);
+}
+
+.selectTrigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.selectTrigger:focus-visible {
+  outline: 2px solid hsl(var(--color-accent-hsl) / 55%);
+  outline-offset: 2px;
+  border-color: hsl(var(--color-accent-hsl) / 70%);
+}
+
+.selectIcon {
+  opacity: 0.85;
+  font-size: 0.9em;
+}
+
+.selectPositioner {
+  z-index: 100;
+}
+
+.selectPopup {
+  padding: var(--space-2);
+  border-radius: var(--radius-5);
+  background: hsl(var(--color-surface-hsl) / 85%);
+  border: 1px solid hsl(var(--color-border-hsl) / 60%);
+  box-shadow: var(--shadow-3);
+  backdrop-filter: blur(18px) saturate(1.1);
+  isolation: isolate;
+}
+
+.selectItem {
+  padding-block: var(--space-2);
+  padding-inline: var(--space-3);
+  border-radius: var(--radius-4);
+  cursor: pointer;
+  user-select: none;
+}
+
+.selectItem[data-highlighted] {
+  background: hsl(var(--color-accent-hsl) / 18%);
+}
+
+.selectItem[data-selected] {
+  background: hsl(var(--color-accent-hsl) / 25%);
+}
+
+.button {
+  padding-block: var(--space-2);
+  padding-inline: var(--space-4);
+  border-radius: var(--radius-4);
+  border: 1px solid hsl(var(--color-accent-hsl) / 55%);
+  background: hsl(var(--color-accent-hsl) / 25%);
+  color: var(--color-text);
+  box-shadow: var(--shadow-1);
+  cursor: pointer;
+  transition:
+    transform var(--duration-fast) var(--ease-out),
+    background-color var(--duration-fast) var(--ease-out);
+}
+
+@media (hover: hover) {
+  .button:hover {
+    background: hsl(var(--color-accent-hsl) / 32%);
+  }
+}
+
+.button:active {
+  transform: translateY(1px);
+}
+
+.button:focus-visible {
+  outline: 2px solid hsl(var(--color-accent-hsl) / 55%);
+  outline-offset: 2px;
+}
+
+.error {
+  font-size: var(--font-size-0);
+  color: hsl(var(--color-danger-hsl) / 100%);
+}
