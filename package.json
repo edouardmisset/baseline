@@ -10,7 +10,7 @@
     "style:lint": "pnpm stylelint './src/**/*.css' --cache",
     "style:lint:fix": "pnpm style:lint --fix",
     "typecheck": "tsc --noEmit",
-    "check": "biome check --write ."
+    "check": "biome check --write . && pnpm style:lint:fix && pnpm typecheck"
   },
   "dependencies": {
     "baseline-status": "^1.1.1",
