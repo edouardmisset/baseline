@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'preact/hooks'
-import type { FavoritesFilter, SortOrder } from '../hooks/use-feature-filters'
+import type { FavoritesFilter, SortOrder } from '../hooks/use-features'
 import { uniqueSortedStrings } from '../lib/unique-sorted'
 import type { FeatureData } from '../types'
 import styles from './feature-controls.module.css'

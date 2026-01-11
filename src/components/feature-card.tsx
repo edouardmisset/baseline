@@ -1,6 +1,7 @@
 import type { FeatureData } from '../types'
 import { BaselineStatus } from './baseline-status'
 import styles from './feature-card.module.css'
+import { SearchIcon, StarIcon } from './icons'
 
 interface Props {
   feature: FeatureData
@@ -37,17 +38,7 @@ export function FeatureCard({ feature, isStarred, onToggleStar }: Props) {
             aria-pressed={isStarred ? 'true' : 'false'}
             onClick={handleStarClick}
           >
-            <svg
-              aria-hidden="true"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-            </svg>
+            <StarIcon />
           </button>
           <button
             type="button"
@@ -55,18 +46,7 @@ export function FeatureCard({ feature, isStarred, onToggleStar }: Props) {
             title="Search on MDN"
             onClick={handleMdnClick}
           >
-            <svg
-              aria-hidden="true"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              <circle cx="11" cy="11" r="8"></circle>
-              <path d="m21 21-4.35-4.35"></path>
-            </svg>
+            <SearchIcon />
           </button>
         </div>
         <span class={styles.categoryBadge} data-category={category}>
