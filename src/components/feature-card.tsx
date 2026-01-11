@@ -1,7 +1,7 @@
 import { useState } from 'preact/hooks'
 import type { FeatureData } from '../types'
-import BaselineStatus from './BaselineStatus'
-import styles from './FeatureCard.module.css'
+import BaselineStatus from './baseline-status'
+import styles from './feature-card.module.css'
 
 interface Props {
   feature: FeatureData

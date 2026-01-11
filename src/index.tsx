@@ -1,7 +1,7 @@
 import { render } from 'preact'
 import 'baseline-status'
 import './style.css'
-import FeatureDashboard from './components/FeatureDashboard'
+import FeatureDashboard from './components/feature-dashboard'
 
 /**
  * A list of web features to check the baseline status for.

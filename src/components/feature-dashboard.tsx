@@ -1,9 +1,9 @@
 import { useMemo } from 'preact/hooks'
-import { useFeatures } from '../hooks/useFeatures'
+import { useFeatures } from '../hooks/use-features'
 import type { FeatureData } from '../types'
-import FeatureCard from './FeatureCard'
-import FeatureControls from './FeatureControls'
-import styles from './FeatureDashboard.module.css'
+import FeatureCard from './feature-card'
+import FeatureControls from './feature-controls'
+import styles from './feature-dashboard.module.css'
 
 interface Props {
   featureIds: string[]

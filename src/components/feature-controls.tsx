@@ -1,5 +1,5 @@
 import type { FeatureData } from '../types'
-import styles from './FeatureControls.module.css'
+import styles from './feature-controls.module.css'
 
 interface Props {
   features: FeatureData[]
