@@ -1,7 +1,7 @@
 import type { FeatureData } from '../types'
 import { BaselineStatus } from './baseline-status'
 import styles from './feature-card.module.css'
-import { SearchIcon, StarIcon } from './icons'
+import { MDNIcon, StarIcon } from './icons'
 
 interface Props {
   feature: FeatureData
@@ -46,7 +46,7 @@ export function FeatureCard({ feature, isStarred, onToggleStar }: Props) {
             title="Search on MDN"
             onClick={handleMdnClick}
           >
-            <SearchIcon />
+            <MDNIcon />
           </button>
         </div>
         <span class={styles.categoryBadge} data-category={category}>
