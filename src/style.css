@@ -156,10 +156,10 @@ kbd {
 }
 
 #app {
-  max-inline-size: 1280px;
+  max-inline-size: 1440px;
   inline-size: 100%;
   margin-inline: auto;
-  padding: var(--space-7);
+  padding-inline: clamp(var(--space-4), 2vw + var(--space-4), var(--space-7));
   block-size: 100%;
   overflow: hidden;
 }
@@ -174,19 +174,16 @@ kbd {
 
 .appHeader {
   text-align: center;
-  margin-block-end: var(--space-4);
 }
 
 .appTitle {
   margin: 0;
   font-size: clamp(2rem, 2vw + 2rem, 4rem);
-  letter-spacing: -0.02em;
   font-family: var(--font-fancy, system-ui);
 }
 
 .appSubtitle {
-  margin-block: var(--space-2) 0;
-  margin-inline: auto;
-  max-inline-size: 70ch;
+  margin-block-start: var(--space-2);
+  max-inline-size: 60ch;
   color: var(--color-muted);
 }

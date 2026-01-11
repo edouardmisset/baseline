@@ -1,9 +1,9 @@
 .featureDashboard {
   display: flex;
   flex-direction: column;
-  margin-block-start: var(--space-6);
   flex: 1;
   min-block-size: 0;
+  gap: var(--space-6);
 }
 
 .featuresScroll {
@@ -20,7 +20,7 @@
 }
 
 .featuresContainer > * + * {
-  margin-block-start: var(--space-8);
+  margin-block-start: var(--space-7);
 }
 
 .categoryGroup {
