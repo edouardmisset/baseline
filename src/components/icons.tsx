@@ -22,8 +22,8 @@ export function MDNIcon({ className }: { className?: string }) {
       width="20"
       height="20"
       viewBox="0 0 24 24"
-      fill="white"
-      stroke="white"
+      fill="currentColor"
+      stroke="currentColor"
       strokeWidth="1"
       class={className}
       role="img"

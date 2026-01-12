@@ -11,7 +11,7 @@
 
 @media (hover: hover) {
   .featureCard:hover {
-    border-color: currentcolor;
+    border-color: var(--category-color);
     transform: translateY(-2px);
   }
 }
@@ -70,7 +70,7 @@
 .starBtn[aria-pressed="true"] svg {
   fill: currentcolor;
   stroke: currentcolor;
-  transform: rotate(-6deg) scale(1.08);
+  transform: rotate(10deg) scale(1.1);
 }
 
 .starBtn:active {
@@ -98,7 +98,7 @@
 .mdnSearchBtn {
   background: none;
   border: none;
-  color: var(--color-muted);
+  color: white;
   cursor: pointer;
   margin: 0;
   display: flex;
@@ -110,7 +110,7 @@
 
 @media (hover: hover) {
   .mdnSearchBtn:hover {
-    color: var(--color-accent);
+    color: var(--category-color, var(--color-accent));
   }
 }
 
@@ -121,45 +121,26 @@
   border-radius: 999px;
   white-space: nowrap;
   font-weight: 600;
-
-  /* Brand color logic */
-  background: oklch(from var(--brand-color, var(--color-accent)) l c h / 18%);
+  background: oklch(from var(--category-color, var(--color-accent)) l c h / 18%);
   border: 1px solid
-    oklch(from var(--brand-color, var(--color-accent)) l c h / 45%);
+    oklch(from var(--category-color, var(--color-accent)) l c h / 45%);
   color: var(--color-text);
 }
 
-/* Brand Colors */
-.categoryBadge[data-category="HTML"] {
-  --brand-color: var(--color-category-html);
-}
-
-.categoryBadge[data-category="CSS"] {
-  --brand-color: var(--color-category-css);
-}
-
-.categoryBadge[data-category="JavaScript"] {
-  --brand-color: var(--color-category-js);
-}
-
-.categoryBadge[data-category="Web Platform"] {
-  --brand-color: var(--color-category-web);
-}
-
 :has([data-category="HTML"]) {
-  color: var(--color-category-html);
+  --category-color: var(--color-category-html);
 }
 
 :has([data-category="CSS"]) {
-  color: var(--color-category-css);
+  --category-color: var(--color-category-css);
 }
 
 :has([data-category="JavaScript"]) {
-  color: var(--color-category-js);
+  --category-color: var(--color-category-js);
 }
 
 :has([data-category="Web Platform"]) {
-  color: var(--color-category-web);
+  --category-color: var(--color-category-web);
 }
 
 .featureDescription {

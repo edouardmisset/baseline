@@ -183,6 +183,7 @@ kbd {
 }
 
 .appSubtitle {
+  margin-inline: auto;
   margin-block-start: var(--space-2);
   max-inline-size: 60ch;
   color: var(--color-muted);
