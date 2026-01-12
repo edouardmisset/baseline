@@ -13,11 +13,11 @@
   align-items: flex-end;
   border-radius: var(--radius-5);
   box-shadow: var(--shadow-2);
+  accent-color: var(--color-accent);
 }
 
 .searchGroup {
-  flex: 1 1 18rem;
-  min-inline-size: 16rem;
+  flex: 1;
 }
 
 .addFeatureForm {

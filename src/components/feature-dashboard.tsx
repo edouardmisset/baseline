@@ -38,7 +38,9 @@ export function FeatureDashboard({ featureIds }: Props) {
     )
   }, [processedFeatures])
 
-  const displayedCategories = Object.keys(groupedFeatures).sort()
+  const displayedCategories = Object.keys(groupedFeatures).sort(
+    (a, b) => -1 * a.localeCompare(b),
+  )
 
   if (loading) {
     return <div class={styles.loading}>Loading features...</div>

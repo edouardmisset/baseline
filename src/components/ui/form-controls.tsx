@@ -15,6 +15,7 @@ interface TextFieldProps {
   error?: string | null
   className?: string
   onValueChange: (next: string) => void
+  type?: HTMLInputElement['type']
 }
 
 export function TextField({
@@ -25,6 +26,7 @@ export function TextField({
   error,
   className,
   onValueChange,
+  type = 'text',
 }: TextFieldProps) {
   return (
     <Field.Root
@@ -32,6 +34,7 @@ export function TextField({
     >
       <Field.Label className={styles.label}>{label}</Field.Label>
       <Input
+        type={type}
         className={styles.input}
         placeholder={placeholder}
         list={list}

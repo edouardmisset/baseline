@@ -112,10 +112,11 @@ export function FeatureControls({
 
   return (
     <div className={styles.controlsSticky}>
-      <div className={`${styles.controlsContainer} glass`}>
+      <search className={`${styles.controlsContainer} glass`}>
         <TextField
           className={styles.searchGroup}
           label="Search"
+          type="search"
           placeholder="Filter by name…"
           value={filters.search}
           onValueChange={setFilters.setSearch}
@@ -166,7 +167,7 @@ export function FeatureControls({
 
           <PrimaryButton type="submit">Add</PrimaryButton>
         </form>
-      </div>
+      </search>
     </div>
   )
 }
