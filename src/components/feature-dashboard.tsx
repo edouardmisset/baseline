@@ -79,7 +79,7 @@ export function FeatureDashboard({ featureIds }: Props) {
                     <span class="srOnly">Link to section {category}</span>
                   </a>
                 </summary>
-                <div class={styles.featuresGrid}>
+                <dl class={styles.featuresGrid}>
                   {groupedFeatures[category].map(feature => (
                     <FeatureCard
                       key={feature.id}
@@ -88,7 +88,7 @@ export function FeatureDashboard({ featureIds }: Props) {
                       onToggleStar={toggleStar}
                     />
                   ))}
-                </div>
+                </dl>
               </details>
             )
           })}

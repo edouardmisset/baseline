@@ -189,3 +189,11 @@ kbd {
   max-inline-size: 60ch;
   color: var(--color-muted);
 }
+
+dd {
+  margin: 0;
+}
+
+dl {
+  margin: 0;
+}

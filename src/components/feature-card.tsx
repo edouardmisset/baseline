@@ -28,7 +28,9 @@ export function FeatureCard({ feature, isStarred, onToggleStar }: Props) {
   return (
     <div class={`${styles.featureCard} glass`}>
       <div class={styles.featureHeader}>
-        <h3>{name}</h3>
+        <dt>
+          <h3>{name}</h3>
+        </dt>
         <div class={styles.actions}>
           <button
             type="button"
@@ -53,7 +55,9 @@ export function FeatureCard({ feature, isStarred, onToggleStar }: Props) {
           {category}
         </span>
       </div>
-      <p class={styles.featureDescription}>{description}</p>
+      <dd>
+        <p class={styles.featureDescription}>{description}</p>
+      </dd>
       <div class={styles.featureStatus}>
         <BaselineStatus id={id} />
       </div>
