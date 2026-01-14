@@ -126,20 +126,27 @@ body {
     linear-gradient(180deg, var(--color-bg), hsl(230deg 35% 6% / 100%));
 }
 
-::selection {
-  background: var(--color-accent-28);
-}
-
 p {
   max-inline-size: 60ch;
-  margin-block: 1lh; /* It's a good idea to use `margin-trim: block;` on the containing element to prevent margins + paddings stacking */
   text-wrap: pretty;
 }
 
-.glass {
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  backdrop-filter: var(--glass-backdrop);
+dd {
+  margin: 0;
+}
+
+dl {
+  margin: 0;
+}
+
+code,
+pre,
+kbd {
+  font-family: var(--font-mono);
+}
+
+::selection {
+  background: var(--color-accent-28);
 }
 
 .srOnly {
@@ -154,16 +161,10 @@ p {
   border: 0;
 }
 
-code,
-pre,
-kbd {
-  font-family: var(--font-mono);
-}
-
-#app {
+.app {
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
+  gap: var(--space-6);
   block-size: 100%;
   inline-size: 100%;
   max-inline-size: 1440px;
@@ -174,6 +175,10 @@ kbd {
 }
 
 .appHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
   text-align: center;
 }
 
@@ -184,16 +189,13 @@ kbd {
 }
 
 .appSubtitle {
-  margin-inline: auto;
-  margin-block-start: var(--space-2);
   max-inline-size: 60ch;
   color: var(--color-muted);
-}
-
-dd {
   margin: 0;
 }
 
-dl {
-  margin: 0;
+.glass {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: var(--glass-backdrop);
 }

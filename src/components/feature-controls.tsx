@@ -75,7 +75,6 @@ export function FeatureControls({
     [statuses],
   )
 
-  // Load full feature IDs from API; fallback to provided list if empty
   const { data: allFeatureIds = [] } = useQuery<string[]>({
     queryKey: ['feature-id-suggestions'],
     queryFn: fetchAllFeatureIds,
@@ -91,23 +90,16 @@ export function FeatureControls({
   }, [allFeatureIds, suggestedFeatureIds])
 
   const [newFeatureId, setNewFeatureId] = useState('')
-  const [newFeatureIdError, setNewFeatureIdError] = useState<string | null>(
-    null,
-  )
 
   const onSubmitNewFeature = (e: Event) => {
     e.preventDefault()
     const next = newFeatureId.trim()
     if (!next) return
 
-    if (!featureIdSuggestions.includes(next)) {
-      setNewFeatureIdError('Pick a feature id from the list.')
-      return
-    }
+    if (!featureIdSuggestions.includes(next)) return
 
     onAddFeatureId(next)
     setNewFeatureId('')
-    setNewFeatureIdError(null)
   }
 
   return (
@@ -158,10 +150,8 @@ export function FeatureControls({
             placeholder="Search feature id…"
             value={newFeatureId}
             options={featureIdSuggestions.map(id => ({ value: id, label: id }))}
-            error={newFeatureIdError}
             onValueChange={v => {
               setNewFeatureId(v)
-              setNewFeatureIdError(null)
             }}
           />
 

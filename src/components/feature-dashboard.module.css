@@ -1,51 +1,23 @@
-.featureDashboard {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  min-block-size: 0;
-  gap: var(--space-6);
-}
-
 .featuresScroll {
   flex: 1;
-  min-block-size: 0;
-  overflow: auto;
-  overscroll-behavior: contain;
-  padding-block-end: var(--space-7);
-  scrollbar-width: none;
-}
-
-.featuresContainer {
-  display: block;
-}
-
-.featuresContainer > * + * {
-  margin-block-start: var(--space-7);
-}
-
-.categoryGroup {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-7);
 }
 
 .categoryHeader {
   position: sticky;
-  inset-block-start: 0;
+  inset-block-start: 8rem;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
   z-index: 20;
   border-radius: var(--radius-5);
   box-shadow: var(--shadow-1);
   padding-block: var(--space-3);
   padding-inline: var(--space-4);
-  display: flex;
-  align-items: center;
-  gap: 0.5em;
   border-block-end: 2px solid var(--color-border-55);
   cursor: pointer;
-  list-style: none;
-  isolation: isolate;
-}
-
-.categoryHeader::-webkit-details-marker {
-  display: none;
 }
 
 .categoryTitle {
@@ -58,9 +30,9 @@
 .anchorLink {
   color: var(--color-muted);
   opacity: 0;
-  transition: opacity var(--duration-fast) var(--ease-out);
-  display: inline-flex;
-  align-items: center;
+  transition:
+    opacity var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out);
 }
 
 .anchorLink:focus-visible {

@@ -170,7 +170,6 @@ interface ComboboxFieldProps {
   options: ReadonlyArray<SelectOption>
   placeholder?: string
   className?: string
-  error?: string | null
   onValueChange: (next: string) => void
 }
 
@@ -180,7 +179,6 @@ export function ComboboxField({
   options,
   placeholder,
   className,
-  error,
   onValueChange,
 }: ComboboxFieldProps) {
   return (
@@ -213,7 +211,6 @@ export function ComboboxField({
           </Combobox.Positioner>
         </Combobox.Portal>
       </Combobox.Root>
-      {error && <Field.Error className={styles.error}>{error}</Field.Error>}
     </Field.Root>
   )
 }

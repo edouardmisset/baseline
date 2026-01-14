@@ -11,15 +11,13 @@ const queryClient = new QueryClient()
 export function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <div class="app">
-        <header class="appHeader">
-          <h1 class="appTitle">Baseline feature dashboard</h1>
-          <p class="appSubtitle">
-            Browse Baseline status from webstatus.dev, and star your favorites.
-          </p>
-        </header>
-        <FeatureDashboard featureIds={[...WEB_FEATURES]} />
-      </div>
+      <header class="appHeader">
+        <h1 class="appTitle">Baseline feature dashboard</h1>
+        <p class="appSubtitle">
+          Browse Baseline status from webstatus.dev, and star your favorites.
+        </p>
+      </header>
+      <FeatureDashboard featureIds={[...WEB_FEATURES]} />
       {import.meta.env.DEV && <ReactQueryDevtools initialIsOpen={false} />}
     </QueryClientProvider>
   )

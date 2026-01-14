@@ -25,18 +25,10 @@ export function FeatureDashboard({ featureIds }: Props) {
   } = useFeatures({ featureIds })
 
   // Group by Category
-  const groupedFeatures = useMemo(() => {
-    return processedFeatures.reduce(
-      (acc, feature) => {
-        if (!acc[feature.category]) {
-          acc[feature.category] = []
-        }
-        acc[feature.category].push(feature)
-        return acc
-      },
-      {} as Record<string, FeatureData[]>,
-    )
-  }, [processedFeatures])
+  const groupedFeatures = useMemo(
+    () => Object.groupBy(processedFeatures, feature => feature.category),
+    [processedFeatures],
+  )
 
   const displayedCategories = Object.keys(groupedFeatures).sort(
     (a, b) => -1 * a.localeCompare(b),
@@ -47,7 +39,7 @@ export function FeatureDashboard({ featureIds }: Props) {
   }
 
   return (
-    <div class={styles.featureDashboard}>
+    <>
       <FeatureControls
         features={features}
         filters={filters}
@@ -57,17 +49,18 @@ export function FeatureDashboard({ featureIds }: Props) {
       />
 
       <div class={styles.featuresScroll}>
-        <div class={styles.featuresContainer}>
-          {displayedCategories.map(category => {
+        {processedFeatures.length === 0 ? (
+          <div class={styles.noResults}>
+            No features match the current filters.
+          </div>
+        ) : (
+          displayedCategories.map(category => {
             const slug = slugify(category)
-            const color = getCategoryColor(category)
             return (
-              <details key={category} class={styles.categoryGroup} open>
+              <details key={category} open>
                 <summary
                   class={`${styles.categoryHeader} glass`}
-                  style={
-                    { '--category-color': color } as Record<string, string>
-                  }
+                  style={{ '--category-color': getCategoryColor(category) }}
                 >
                   <h2 id={slug} class={styles.categoryTitle}>
                     {category}
@@ -91,15 +84,9 @@ export function FeatureDashboard({ featureIds }: Props) {
                 </dl>
               </details>
             )
-          })}
-        </div>
-
-        {processedFeatures.length === 0 && (
-          <div class={styles.noResults}>
-            No features match the current filters.
-          </div>
+          })
         )}
       </div>
-    </div>
+    </>
   )
 }
