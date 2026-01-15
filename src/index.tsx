@@ -14,7 +14,7 @@ export function App() {
       <header class="appHeader">
         <h1 class="appTitle">Baseline feature dashboard</h1>
         <p class="appSubtitle">
-          Browse Baseline status from webstatus.dev, and star your favorites.
+          Keep an eye on Baseline status from webstatus.dev.
         </p>
       </header>
       <FeatureDashboard featureIds={[...WEB_FEATURES]} />
