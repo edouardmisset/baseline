@@ -14,7 +14,16 @@ export function App() {
       <header class="appHeader">
         <h1 class="appTitle">Baseline feature dashboard</h1>
         <p class="appSubtitle">
-          Keep an eye on Baseline status from webstatus.dev.
+          Keep an eye on Baseline status from{' '}
+          <a
+            href="https://webstatus.dev"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="appLink"
+          >
+            webstatus.dev
+          </a>
+          .
         </p>
       </header>
       <FeatureDashboard featureIds={[...WEB_FEATURES]} />

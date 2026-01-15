@@ -194,6 +194,11 @@ kbd {
   margin: 0;
 }
 
+.appLink {
+  color: var(--color-text);
+  text-decoration: dotted underline;
+}
+
 .glass {
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
