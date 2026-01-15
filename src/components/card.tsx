@@ -1,6 +1,6 @@
 import type { FeatureData } from '../types'
 import { BaselineStatus } from './baseline-status'
-import styles from './feature-card.module.css'
+import styles from './card.module.css'
 import { MDNIcon, StarIcon } from './icons'
 
 interface Props {
@@ -9,25 +9,16 @@ interface Props {
   onToggleStar: (id: string) => void
 }
 
-export function FeatureCard({ feature, isStarred, onToggleStar }: Props) {
+export function Card({ feature, isStarred, onToggleStar }: Props) {
   const { id, name, description, category } = feature
 
-  const handleStarClick = (e: Event) => {
-    e.stopPropagation()
+  const handleStarClick = () => {
     onToggleStar(id)
   }
 
-  const handleMdnClick = (e: Event) => {
-    e.stopPropagation()
-    window.open(
-      `https://developer.mozilla.org/en-US/search?q=${encodeURIComponent(name)}`,
-      '_blank',
-    )
-  }
-
   return (
-    <div class={`${styles.featureCard} glass`}>
-      <div class={styles.featureHeader}>
+    <div class={`${styles.card} glass`}>
+      <div class={styles.cardHeader}>
         <dt>
           <h3>{name}</h3>
         </dt>
@@ -42,21 +33,22 @@ export function FeatureCard({ feature, isStarred, onToggleStar }: Props) {
           >
             <StarIcon />
           </button>
-          <button
-            type="button"
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href={`https://developer.mozilla.org/en-US/search?q=${encodeURIComponent(name)}`}
             class={styles.mdnSearchBtn}
             title="Search on MDN"
-            onClick={handleMdnClick}
           >
             <MDNIcon />
-          </button>
+          </a>
         </div>
-        <span class={styles.categoryBadge} data-category={category}>
+        <span class={styles.badge} data-category={category}>
           {category}
         </span>
       </div>
       <dd>
-        <p class={styles.featureDescription}>{description}</p>
+        <p class={styles.description}>{description}</p>
       </dd>
       <div class={styles.featureStatus}>
         <BaselineStatus id={id} />

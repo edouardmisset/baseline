@@ -3,16 +3,16 @@ import { getCategoryColor } from '../constants/category-colors'
 import { useFeatures } from '../hooks/use-features'
 import { slugify } from '../lib/slugify'
 import type { FeatureData } from '../types'
-import { FeatureCard } from './feature-card'
-import { FeatureControls } from './feature-controls'
-import styles from './feature-dashboard.module.css'
+import { Card } from './card'
+import styles from './dashboard.module.css'
+import { FilterBar } from './filter-bar'
 import { LinkIcon } from './icons'
 
 interface Props {
   featureIds: string[]
 }
 
-export function FeatureDashboard({ featureIds }: Props) {
+export function Dashboard({ featureIds }: Props) {
   const {
     features,
     loading,
@@ -40,7 +40,7 @@ export function FeatureDashboard({ featureIds }: Props) {
 
   return (
     <>
-      <FeatureControls
+      <FilterBar
         features={features}
         filters={filters}
         setFilters={setFilters}
@@ -48,11 +48,9 @@ export function FeatureDashboard({ featureIds }: Props) {
         onAddFeatureId={addFeatureId}
       />
 
-      <div class={styles.featuresScroll}>
+      <section class={styles.featuresScroll}>
         {processedFeatures.length === 0 ? (
-          <div class={styles.noResults}>
-            No features match the current filters.
-          </div>
+          <p class={styles.noResults}>No features match the current filters.</p>
         ) : (
           displayedCategories.map(category => {
             const slug = slugify(category)
@@ -73,8 +71,8 @@ export function FeatureDashboard({ featureIds }: Props) {
                   </a>
                 </summary>
                 <dl class={styles.featuresGrid}>
-                  {groupedFeatures[category].map(feature => (
-                    <FeatureCard
+                  {groupedFeatures[category].map((feature: FeatureData) => (
+                    <Card
                       key={feature.id}
                       feature={feature}
                       isStarred={starred.has(feature.id)}
@@ -86,7 +84,7 @@ export function FeatureDashboard({ featureIds }: Props) {
             )
           })
         )}
-      </div>
+      </section>
     </>
   )
 }

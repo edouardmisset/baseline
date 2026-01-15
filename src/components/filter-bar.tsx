@@ -4,7 +4,7 @@ import { fetchAllFeatureIds } from '../api/webstatus'
 import type { FavoritesFilter, SortOrder } from '../hooks/use-features'
 import { uniqueSortedStrings } from '../lib/unique-sorted'
 import type { FeatureData } from '../types'
-import styles from './feature-controls.module.css'
+import styles from './filter-bar.module.css'
 import {
   ComboboxField,
   MultiSelectField,
@@ -46,7 +46,7 @@ interface Props {
   onAddFeatureId: (id: string) => void
 }
 
-export function FeatureControls({
+export function FilterBar({
   features,
   filters,
   setFilters,

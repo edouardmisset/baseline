@@ -73,11 +73,6 @@
   --color-category-js: hsl(52deg 84% 63%);
   --color-category-web: hsl(210deg 10% 70%);
 
-  /* Glass */
-  --glass-bg: var(--color-surface-52);
-  --glass-border: var(--color-border-55);
-  --glass-backdrop: blur(18px) saturate(1.15);
-
   /* Shadows */
   --shadow-1:
     0 1px 0 hsl(0deg 0% 100% / 6%), 0 10px 30px hsl(230deg 60% 2% / 25%);
@@ -200,6 +195,10 @@ kbd {
 }
 
 .glass {
+  --glass-bg: var(--color-surface-52);
+  --glass-border: var(--color-border-55);
+  --glass-backdrop: blur(2px) saturate(1.2);
+
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
   backdrop-filter: var(--glass-backdrop);

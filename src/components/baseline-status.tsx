@@ -11,5 +11,5 @@ interface Props {
 }
 
 export function BaselineStatus({ id }: Props) {
-  return <baseline-status featureId={id}></baseline-status>
+  return <baseline-status featureId={id} />
 }

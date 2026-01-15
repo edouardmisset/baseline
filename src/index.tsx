@@ -3,7 +3,7 @@ import 'baseline-status'
 import './style.css'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-import { FeatureDashboard } from './components/feature-dashboard'
+import { Dashboard } from './components/dashboard'
 import { WEB_FEATURES } from './constants/web-features'
 
 const queryClient = new QueryClient()
@@ -26,7 +26,7 @@ export function App() {
           .
         </p>
       </header>
-      <FeatureDashboard featureIds={[...WEB_FEATURES]} />
+      <Dashboard featureIds={[...WEB_FEATURES]} />
       {import.meta.env.DEV && <ReactQueryDevtools initialIsOpen={false} />}
     </QueryClientProvider>
   )

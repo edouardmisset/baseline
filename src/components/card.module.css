@@ -1,4 +1,4 @@
-.featureCard {
+.card {
   padding: var(--space-5);
   border-radius: var(--radius-6);
   box-shadow: var(--shadow-2);
@@ -9,19 +9,23 @@
 }
 
 @media (hover: hover) {
-  .featureCard:hover {
+  .card:hover {
     border-color: var(--category-color);
   }
 }
 
-.featureHeader {
+.cardHeader {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   gap: var(--space-4);
+
+  & :first-child {
+    flex: 1;
+  }
 }
 
-.featureHeader h3 {
+.cardHeader h3 {
   margin: 0;
   font-size: var(--font-size-4);
   line-height: 1.5;
@@ -109,7 +113,7 @@
   }
 }
 
-.categoryBadge {
+.badge {
   font-size: var(--font-size-0);
   padding-block: var(--space-1);
   padding-inline: var(--space-2);
@@ -141,6 +145,6 @@
   --category-color: var(--color-category-web);
 }
 
-.featureDescription {
+.description {
   color: var(--color-muted);
 }
