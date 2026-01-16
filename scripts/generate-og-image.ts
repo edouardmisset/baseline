@@ -22,11 +22,12 @@ async function generateOGImage() {
   // Wait a bit more for data to load
   await page.waitForTimeout(2000)
 
-  const outputPath = join(__dirname, "..", "public", "og-image.png")
+  const outputPath = join(__dirname, "..", "public", "og-image.jpg")
   console.log(`Taking screenshot at 1200×630px...`)
   await page.screenshot({
     path: outputPath,
-    type: "png",
+    type: "jpeg",
+    quality: 85,
   })
 
   await browser.close()
