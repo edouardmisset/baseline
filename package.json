@@ -10,7 +10,8 @@
     "style:lint": "pnpm stylelint './src/**/*.css' --cache",
     "style:lint:fix": "pnpm style:lint --fix",
     "typecheck": "tsc --noEmit",
-    "check": "biome check --write . && pnpm style:lint:fix && pnpm typecheck"
+    "check": "biome check --write . && pnpm style:lint:fix && pnpm typecheck",
+    "generate:og": "tsx scripts/generate-og-image.ts"
   },
   "dependencies": {
     "@base-ui/react": "^1.0.0",
@@ -27,6 +28,9 @@
   "devDependencies": {
     "@biomejs/biome": "2.3.11",
     "@preact/preset-vite": "^2.10.2",
+    "@types/node": "^22.10.5",
+    "playwright": "^1.49.1",
+    "tsx": "^4.19.2",
     "typescript": "^5.9.3",
     "vite": "^7.0.4"
   },
