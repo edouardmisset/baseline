@@ -27,3 +27,8 @@
   align-items: flex-end;
   gap: var(--space-3);
 }
+
+.filledStar {
+  fill: gold;
+  stroke: gold;
+}

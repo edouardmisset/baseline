@@ -12,7 +12,8 @@
 }
 
 .input,
-.selectTrigger {
+.selectTrigger,
+.toggle {
   inline-size: 100%;
   gap: var(--space-2);
   padding-block: var(--space-2);
@@ -46,6 +47,30 @@
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  @media (hover: hover) {
+    &:hover {
+      background-color: var(--color-surface-50);
+    }
+  }
+
+  &[data-pressed] {
+    background-color: var(--color-accent-20);
+    border-color: var(--color-accent-40);
+    color: var(--color-text);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent-55);
+    outline-offset: 2px;
+  }
 }
 
 /* Combobox inline trigger icon, single input look */

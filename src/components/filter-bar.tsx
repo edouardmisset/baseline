@@ -5,18 +5,15 @@ import type { FavoritesFilter, SortOrder } from '../hooks/use-features'
 import { uniqueSortedStrings } from '../lib/unique-sorted'
 import type { FeatureData } from '../types'
 import styles from './filter-bar.module.css'
+import { StarIcon } from './icons'
 import {
   ComboboxField,
   MultiSelectField,
   PrimaryButton,
   SelectField,
   TextField,
+  ToggleField,
 } from './ui/form-controls'
-
-const FAVORITES_OPTIONS = [
-  { value: 'all', label: 'All' },
-  { value: 'starred', label: 'Starred only' },
-] as const
 
 const SORT_OPTIONS = [
   { value: 'newest', label: 'Newest / Upcoming' },
@@ -35,11 +32,11 @@ interface Props {
     sort: SortOrder
   }
   setFilters: {
-    setSearch: (v: string) => void
-    setCategory: (v: string[]) => void
-    setStatus: (v: string[]) => void
-    setFavorites: (v: FavoritesFilter) => void
-    setSort: (v: SortOrder) => void
+    setSearch: (value: string) => void
+    setCategory: (value: string[]) => void
+    setStatus: (value: string[]) => void
+    setFavorites: (value: FavoritesFilter) => void
+    setSort: (value: SortOrder) => void
   }
 
   suggestedFeatureIds: string[]
@@ -53,13 +50,15 @@ export function FilterBar({
   suggestedFeatureIds,
   onAddFeatureId,
 }: Props) {
-  const categories = uniqueSortedStrings(features.map(f => f.category))
-  const statuses = uniqueSortedStrings(features.map(f => f.status))
+  const categories = uniqueSortedStrings(
+    features.map(feature => feature.category),
+  )
+  const statuses = uniqueSortedStrings(features.map(feature => feature.status))
 
   const categoryOptions = useMemo(
     () => [
       { value: 'all', label: 'All' },
-      ...categories.map(c => ({ value: c, label: c })),
+      ...categories.map(category => ({ value: category, label: category })),
     ],
     [categories],
   )
@@ -67,9 +66,9 @@ export function FilterBar({
   const statusOptions = useMemo(
     () => [
       { value: 'all', label: 'All' },
-      ...statuses.map(s => ({
-        value: s,
-        label: s.charAt(0).toUpperCase() + s.slice(1),
+      ...statuses.map(status => ({
+        value: status,
+        label: status.charAt(0).toUpperCase() + status.slice(1),
       })),
     ],
     [statuses],
@@ -91,8 +90,8 @@ export function FilterBar({
 
   const [newFeatureId, setNewFeatureId] = useState('')
 
-  const onSubmitNewFeature = (e: Event) => {
-    e.preventDefault()
+  const onSubmitNewFeature = (event: Event) => {
+    event.preventDefault()
     const next = newFeatureId.trim()
     if (!next) return
 
@@ -128,13 +127,18 @@ export function FilterBar({
           onValueChange={setFilters.setStatus}
         />
 
-        <SelectField
+        <ToggleField
           label="Favorites"
-          value={filters.favorites}
-          defaultValue="all"
-          options={FAVORITES_OPTIONS}
-          onValueChange={v => setFilters.setFavorites(v as FavoritesFilter)}
-        />
+          pressed={filters.favorites === 'starred'}
+          onPressedChange={pressed =>
+            setFilters.setFavorites(pressed ? 'starred' : 'all')
+          }
+        >
+          <StarIcon
+            className={filters.favorites === 'starred' ? styles.filledStar : ''}
+          />
+          {filters.favorites === 'starred' ? 'Favorite only' : 'All'}
+        </ToggleField>
 
         <SelectField
           label="Sort"
