@@ -109,7 +109,7 @@ export function FilterBar({
           className={styles.searchGroup}
           label="Search"
           type="search"
-          placeholder="Filter by name…"
+          placeholder="Filter by feature name"
           value={filters.search}
           onValueChange={setFilters.setSearch}
         />
@@ -147,7 +147,7 @@ export function FilterBar({
         <form className={styles.addFeatureForm} onSubmit={onSubmitNewFeature}>
           <ComboboxField
             label="Add feature id"
-            placeholder="Search feature id…"
+            placeholder="Search feature id"
             value={newFeatureId}
             options={featureIdSuggestions.map(id => ({ value: id, label: id }))}
             onValueChange={v => {

@@ -1,5 +1,5 @@
 .card {
-  padding: var(--space-5);
+  padding: clamp(var(--space-2), 2vw, var(--space-5));
   border-radius: var(--radius-6);
   box-shadow: var(--shadow-2);
   display: flex;

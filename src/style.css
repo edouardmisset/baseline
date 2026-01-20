@@ -164,7 +164,7 @@ kbd {
   block-size: 100%;
   inline-size: 100%;
   margin-inline: auto;
-  padding-inline: clamp(var(--space-4), 2vw + var(--space-4), var(--space-7));
+  padding-inline: clamp(var(--space-1), 2vw, var(--space-7));
   overflow: auto;
   overscroll-behavior: contain;
 }

@@ -124,12 +124,14 @@ export function MultiSelectField({
       } else {
         onValueChange(next.length > 0 ? next : ['all'])
       }
-    } else if (valueHasAll && nextHasAll) {
+      return
+    }
+    if (valueHasAll && nextHasAll) {
       const otherItems = next.filter(item => item !== 'all')
       onValueChange(otherItems.length > 0 ? otherItems : ['all'])
-    } else {
-      onValueChange(next.length > 0 ? next : ['all'])
+      return
     }
+    onValueChange(next.length > 0 ? next : ['all'])
   }
 
   return (
@@ -147,13 +149,13 @@ export function MultiSelectField({
         <Select.Portal>
           <Select.Positioner className={styles.selectPositioner}>
             <Select.Popup className={styles.selectPopup}>
-              {options.map(opt => (
+              {options.map(option => (
                 <Select.Item
-                  key={opt.value}
+                  key={option.value}
                   className={styles.selectItem}
-                  value={opt.value}
+                  value={option.value}
                 >
-                  <Select.ItemText>{opt.label}</Select.ItemText>
+                  <Select.ItemText>{option.label}</Select.ItemText>
                 </Select.Item>
               ))}
             </Select.Popup>
@@ -197,13 +199,13 @@ export function ComboboxField({
           <Combobox.Positioner className={styles.selectPositioner}>
             <Combobox.Popup className={styles.selectPopup}>
               <Combobox.List>
-                {options.map(opt => (
+                {options.map(option => (
                   <Combobox.Item
-                    key={opt.value}
+                    key={option.value}
                     className={styles.selectItem}
-                    value={opt.value}
+                    value={option.value}
                   >
-                    {opt.label}
+                    {option.label}
                   </Combobox.Item>
                 ))}
               </Combobox.List>
