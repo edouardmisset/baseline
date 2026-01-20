@@ -47,7 +47,7 @@ export function Card({ feature, isStarred, onToggleStar }: Props) {
           {category}
         </span>
       </div>
-      <dd>
+      <dd class={styles.content}>
         <p class={styles.description}>{description}</p>
       </dd>
       <div class={styles.featureStatus}>

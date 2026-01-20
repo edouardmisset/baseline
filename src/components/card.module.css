@@ -148,3 +148,7 @@
 .description {
   color: var(--color-muted);
 }
+
+.content {
+  flex: 1;
+}
