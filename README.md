@@ -2,6 +2,8 @@
 
 A small dashboard for exploring **Baseline** statuses for Web Platform features, powered by the `baseline-status` web component and data from <https://webstatus.dev>.
 
+![Screenshot](./public/og-image.jpg)
+
 ## Features
 
 - Search, filter (category/status), favorites, and sorting
