@@ -1,0 +1,53 @@
+---
+import type { FeatureData } from '../../types'
+import styles from '../dashboard.module.css'
+import { InteractiveFilterBar } from '../islands/InteractiveFilterBar.tsx'
+import CategorySection from './CategorySection.astro'
+
+interface Props {
+  features: FeatureData[]
+  suggestedFeatureIds: readonly string[]
+}
+
+const { features, suggestedFeatureIds } = Astro.props
+
+// Pre-compute grouped features at build time
+const groupedFeatures = Object.groupBy(features, feature => feature.category)
+const displayedCategories = Object.keys(groupedFeatures).sort(
+  (a, b) => -1 * a.localeCompare(b),
+)
+---
+
+<!-- Interactive FilterBar - hydrates immediately for user input -->
+<InteractiveFilterBar
+  client:load
+  initialFeatures={features}
+  suggestedFeatureIds={[...suggestedFeatureIds]}
+/>
+
+<!-- Static pre-rendered content (categories and cards) -->
+<!-- This will be enhanced/replaced by client-side interactivity -->
+<section class={styles.featuresScroll} id="features-container">
+  {
+    displayedCategories.map(category => (
+      <CategorySection
+        category={category}
+        features={groupedFeatures[category] || []}
+      />
+    ))
+  }
+</section>
+
+<!-- Client-side hydration for full interactivity -->
+<script>
+  // This script runs on the client to enable full interactivity
+  // It will reconcile preloaded data with fresh data and localStorage
+  import { hydrateApp } from '../islands/hydrate-app'
+
+  // Hydrate the app once DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', hydrateApp)
+  } else {
+    hydrateApp()
+  }
+</script>

@@ -6,7 +6,7 @@ import {
   Select,
   Toggle as TogglePrimitive,
 } from '@base-ui/react'
-import type { ComponentChildren } from 'preact'
+import type { ReactNode } from 'react'
 import styles from './form-controls.module.css'
 
 export type SelectOption = {
@@ -225,7 +225,7 @@ export function ComboboxField({
 }
 
 interface PrimaryButtonProps {
-  children: ComponentChildren
+  children: ReactNode
   type?: 'button' | 'submit' | 'reset'
   className?: string
 }
@@ -242,48 +242,5 @@ export function PrimaryButton({
     >
       {children}
     </Button>
-  )
-}
-
-interface ToggleProps {
-  children?: ComponentChildren
-  pressed?: boolean
-  defaultPressed?: boolean
-  onPressedChange?: (pressed: boolean) => void
-  className?: string
-  'aria-label'?: string
-}
-
-export function Toggle({
-  children,
-  pressed,
-  defaultPressed,
-  onPressedChange,
-  className,
-  ...props
-}: ToggleProps) {
-  return (
-    <TogglePrimitive
-      pressed={pressed}
-      defaultPressed={defaultPressed}
-      onPressedChange={onPressedChange}
-      className={`${styles.toggle}${className ? ` ${className}` : ''}`}
-      {...props}
-    >
-      {children}
-    </TogglePrimitive>
-  )
-}
-
-interface ToggleFieldProps extends ToggleProps {
-  label: string
-}
-
-export function ToggleField({ label, className, ...props }: ToggleFieldProps) {
-  return (
-    <Field.Root className={styles.field}>
-      <Field.Label className={styles.label}>{label}</Field.Label>
-      <Toggle className={className} {...props} />
-    </Field.Root>
   )
 }

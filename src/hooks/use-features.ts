@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { useCallback, useMemo, useState } from 'preact/hooks'
+import { useMemo, useState } from 'react'
 import { fetchFeatures } from '../api/webstatus'
 import { STORAGE_KEYS } from '../constants/storage-keys'
 import { uniqueSortedStrings } from '../lib/unique-sorted'
@@ -7,13 +7,11 @@ import type { FeatureData } from '../types'
 import { useLocalStorageStringArray } from './use-local-storage-string-array'
 
 export type SortOrder = 'newest' | 'oldest' | 'az' | 'za'
-export type FavoritesFilter = 'all' | 'starred'
 
 export interface FeatureFilters {
   search: string
   category: string[]
   status: string[]
-  favorites: FavoritesFilter
   sort: SortOrder
 }
 
@@ -30,33 +28,19 @@ export function useFeatures({ featureIds: baseFeatureIds }: UseFeaturesProps) {
     return uniqueSortedStrings([...baseFeatureIds, ...customFeatureIds])
   }, [baseFeatureIds, customFeatureIds])
 
-  // Starred State
-  const { value: starredIds, setValue: setStarredIds } =
-    useLocalStorageStringArray(STORAGE_KEYS.starredFeatureIds)
-  const starred = useMemo(() => new Set(starredIds), [starredIds])
-
-  const toggleStar = useCallback(
-    (id: string) => {
-      setStarredIds(prev =>
-        prev.includes(id) ? prev.filter(v => v !== id) : [...prev, id],
-      )
-    },
-    [setStarredIds],
-  )
+  // Starred/Favorites functionality removed
 
   // Filters State
   const [search, setSearch] = useState('')
   const [category, setCategory] = useState<string[]>(['all'])
   const [status, setStatus] = useState<string[]>(['all'])
-  const [favorites, setFavorites] = useState<FavoritesFilter>('all')
   const [sort, setSort] = useState<SortOrder>('newest')
 
-  const filters = { search, category, status, favorites, sort }
+  const filters = { search, category, status, sort }
   const setFilters = {
     setSearch,
     setCategory,
     setStatus,
-    setFavorites,
     setSort,
   }
 
@@ -93,7 +77,6 @@ export function useFeatures({ featureIds: baseFeatureIds }: UseFeaturesProps) {
         )
           return false
         if (status.length === 0) return false
-        if (favorites === 'starred' && !starred.has(f.id)) return false
         return true
       })
       .sort((a, b) => {
@@ -108,15 +91,13 @@ export function useFeatures({ featureIds: baseFeatureIds }: UseFeaturesProps) {
             return b.date.localeCompare(a.date)
         }
       })
-  }, [features, search, category, status, favorites, sort, starred])
+  }, [features, search, category, status, sort])
 
   return {
     addFeatureId: addCustomFeatureId,
     features,
     loading,
     processedFeatures,
-    starred,
-    toggleStar,
     filters,
     setFilters,
   }

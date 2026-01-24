@@ -1,4 +1,4 @@
-import { render } from 'preact'
+import { createRoot } from 'react-dom/client'
 import 'baseline-status'
 import './style.css'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
@@ -11,15 +11,15 @@ const queryClient = new QueryClient()
 export function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <header class="appHeader">
-        <h1 class="appTitle">Baseline feature dashboard</h1>
-        <p class="appSubtitle">
+      <header className="appHeader">
+        <h1 className="appTitle">Baseline feature dashboard</h1>
+        <p className="appSubtitle">
           Keep an eye on Baseline status from{' '}
           <a
             href="https://webstatus.dev"
             target="_blank"
             rel="noopener noreferrer"
-            class="appLink"
+            className="appLink"
           >
             webstatus.dev
           </a>
@@ -32,4 +32,7 @@ export function App() {
   )
 }
 
-render(<App />, document.getElementById('app'))
+const container = document.getElementById('app')
+if (container) {
+  createRoot(container).render(<App />)
+}

@@ -2,23 +2,29 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
+    "dev": "astro dev",
+    "dev:vite": "vite",
+    "build": "astro build",
+    "build:vite": "vite build",
+    "preview": "astro preview",
+    "preview:vite": "vite preview",
     "lint:fix": "biome lint . --write",
     "format": "biome format . --write",
     "style:lint": "pnpm stylelint './src/**/*.css' --cache",
     "style:lint:fix": "pnpm style:lint --fix",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "astro check",
     "check": "biome check --write . && pnpm style:lint:fix && pnpm typecheck",
     "generate:og": "tsx scripts/generate-og-image.ts"
   },
   "dependencies": {
+    "@astrojs/react": "^4.2.1",
     "@base-ui/react": "^1.0.0",
     "@tanstack/react-query": "^5.90.16",
     "@tanstack/react-query-devtools": "^5.91.2",
+    "astro": "^5.16.15",
     "baseline-status": "1.0.11",
-    "preact": "^10.26.9",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
     "stylelint": "^16.26.1",
     "stylelint-config-standard": "^39.0.1",
     "stylelint-order": "^7.0.1",
@@ -26,20 +32,21 @@
     "stylelint-use-logical-spec": "^5.0.1"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.6",
     "@biomejs/biome": "2.3.11",
-    "@preact/preset-vite": "^2.10.2",
     "@types/node": "^22.10.5",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "@vitejs/plugin-react": "^5.1.2",
     "playwright": "^1.49.1",
     "tsx": "^4.19.2",
     "typescript": "^5.9.3",
     "vite": "^7.0.4"
   },
   "pnpm": {
-    "peerDependencyRules": {
-      "ignoreMissing": [
-        "react",
-        "react-dom"
-      ]
-    }
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "sharp"
+    ]
   }
 }

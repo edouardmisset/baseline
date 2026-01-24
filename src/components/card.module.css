@@ -38,62 +38,6 @@
   align-items: center;
 }
 
-.starBtn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: var(--color-muted);
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition:
-    color var(--duration-med) var(--ease-out),
-    transform var(--duration-med) var(--ease-out-back);
-
-  &:active {
-    transform: scale(0.9);
-  }
-
-  & > svg {
-    transition:
-      fill var(--duration-med) var(--ease-out),
-      stroke var(--duration-med) var(--ease-out),
-      transform var(--duration-med) var(--ease-out-back);
-  }
-
-  @media (hover: hover) {
-    &:hover {
-      color: var(--color-gold);
-    }
-  }
-
-  &[aria-pressed="true"] {
-    color: var(--color-gold);
-    animation: star-animation var(--duration-slow) ease-in-out;
-
-    &:active {
-      transform: scale(1.25);
-    }
-
-    & > svg {
-      fill: currentcolor;
-      stroke: currentcolor;
-      transform: scale(1.25);
-    }
-  }
-}
-
-@keyframes star-animation {
-  50% {
-    transform: scale(1.5);
-  }
-
-  100% {
-    rotate: 1turn;
-  }
-}
-
 .mdnSearchBtn {
   background: none;
   border: none;

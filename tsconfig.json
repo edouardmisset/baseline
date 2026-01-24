@@ -3,18 +3,12 @@
     "target": "ES2024",
     "module": "ESNext",
     "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
     "noEmit": true,
-    /* Preact Config */
+    /* React Config */
     "jsx": "react-jsx",
-    "jsxImportSource": "preact",
-    "skipLibCheck": true,
-    "paths": {
-      "react": ["./node_modules/preact/compat/"],
-      "react-dom": ["./node_modules/preact/compat/"],
-      "react-dom/client": ["./node_modules/preact/compat/client"],
-      "react/jsx-runtime": ["./node_modules/preact/jsx-runtime"],
-      "react/jsx-dev-runtime": ["./node_modules/preact/jsx-dev-runtime"]
-    }
+    "jsxImportSource": "react",
+    "skipLibCheck": true
   },
   "include": ["node_modules/vite/client.d.ts", "src/**/*", "vite.config.ts"],
   "exclude": ["dist"]

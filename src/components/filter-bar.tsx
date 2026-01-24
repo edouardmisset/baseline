@@ -1,18 +1,16 @@
 import { useQuery } from '@tanstack/react-query'
-import { useMemo, useState } from 'preact/hooks'
+import { useMemo, useState } from 'react'
 import { fetchAllFeatureIds } from '../api/webstatus'
-import type { FavoritesFilter, SortOrder } from '../hooks/use-features'
+import type { SortOrder } from '../hooks/use-features'
 import { uniqueSortedStrings } from '../lib/unique-sorted'
 import type { FeatureData } from '../types'
 import styles from './filter-bar.module.css'
-import { StarIcon } from './icons'
 import {
   ComboboxField,
   MultiSelectField,
   PrimaryButton,
   SelectField,
   TextField,
-  ToggleField,
 } from './ui/form-controls'
 
 const SORT_OPTIONS = [
@@ -28,14 +26,12 @@ interface Props {
     search: string
     category: string[]
     status: string[]
-    favorites: FavoritesFilter
     sort: SortOrder
   }
   setFilters: {
     setSearch: (value: string) => void
     setCategory: (value: string[]) => void
     setStatus: (value: string[]) => void
-    setFavorites: (value: FavoritesFilter) => void
     setSort: (value: SortOrder) => void
   }
 
@@ -90,12 +86,10 @@ export function FilterBar({
 
   const [newFeatureId, setNewFeatureId] = useState('')
 
-  const onSubmitNewFeature = (event: Event) => {
+  const onSubmitNewFeature = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const next = newFeatureId.trim()
-    if (!next) return
-
-    if (!featureIdSuggestions.includes(next)) return
+    if (!next || !featureIdSuggestions.includes(next)) return
 
     onAddFeatureId(next)
     setNewFeatureId('')
@@ -126,19 +120,6 @@ export function FilterBar({
           options={statusOptions}
           onValueChange={setFilters.setStatus}
         />
-
-        <ToggleField
-          label="Favorites"
-          pressed={filters.favorites === 'starred'}
-          onPressedChange={pressed =>
-            setFilters.setFavorites(pressed ? 'starred' : 'all')
-          }
-        >
-          <StarIcon
-            className={filters.favorites === 'starred' ? styles.filledStar : ''}
-          />
-          {filters.favorites === 'starred' ? 'Favorite only' : 'All'}
-        </ToggleField>
 
         <SelectField
           label="Sort"

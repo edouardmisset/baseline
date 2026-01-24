@@ -1,4 +1,4 @@
-import { useMemo } from 'preact/hooks'
+import { useMemo } from 'react'
 import { getCategoryColor } from '../constants/category-colors'
 import { useFeatures } from '../hooks/use-features'
 import { slugify } from '../lib/slugify'
@@ -17,8 +17,6 @@ export function Dashboard({ featureIds }: Props) {
     features,
     loading,
     processedFeatures,
-    starred,
-    toggleStar,
     filters,
     setFilters,
     addFeatureId,
@@ -35,7 +33,7 @@ export function Dashboard({ featureIds }: Props) {
   )
 
   if (loading) {
-    return <div class={styles.loading}>Loading features...</div>
+    return <div className={styles.loading}>Loading features...</div>
   }
 
   return (
@@ -48,36 +46,37 @@ export function Dashboard({ featureIds }: Props) {
         onAddFeatureId={addFeatureId}
       />
 
-      <section class={styles.featuresScroll}>
+      <section className={styles.featuresScroll}>
         {processedFeatures.length === 0 ? (
-          <p class={styles.noResults}>No features match the current filters.</p>
+          <p className={styles.noResults}>
+            No features match the current filters.
+          </p>
         ) : (
           displayedCategories.map(category => {
             const slug = slugify(category)
             return (
               <details key={category} open>
                 <summary
-                  class={`${styles.categoryHeader} glass`}
-                  style={{ '--category-color': getCategoryColor(category) }}
+                  className={`${styles.categoryHeader} glass`}
+                  style={
+                    {
+                      '--category-color': getCategoryColor(category),
+                    } as React.CSSProperties
+                  }
                 >
-                  <h2 id={slug} class={styles.categoryTitle}>
+                  <h2 id={slug} className={styles.categoryTitle}>
                     {category}
                   </h2>
-                  <a class={styles.anchorLink} href={`#${slug}`}>
+                  <a className={styles.anchorLink} href={`#${slug}`}>
                     <span aria-hidden="true">
                       <LinkIcon />
                     </span>
-                    <span class="srOnly">Link to section {category}</span>
+                    <span className="srOnly">Link to section {category}</span>
                   </a>
                 </summary>
-                <dl class={styles.featuresGrid}>
+                <dl className={styles.featuresGrid}>
                   {groupedFeatures[category].map((feature: FeatureData) => (
-                    <Card
-                      key={feature.id}
-                      feature={feature}
-                      isStarred={starred.has(feature.id)}
-                      onToggleStar={toggleStar}
-                    />
+                    <Card key={feature.id} feature={feature} />
                   ))}
                 </dl>
               </details>
