@@ -1,6 +1,4 @@
-import { useQuery } from '@tanstack/react-query'
 import { useMemo, useState } from 'react'
-import { fetchAllFeatureIds } from '../api/webstatus'
 import type { Category } from '../constants/category-colors'
 import type { SortOrder } from '../hooks/use-features'
 import { uniqueSortedStrings } from '../lib/unique-sorted'
@@ -71,19 +69,9 @@ export function FilterBar({
     [statuses],
   )
 
-  const { data: allFeatureIds = [] } = useQuery<string[]>({
-    queryKey: ['feature-id-suggestions'],
-    queryFn: fetchAllFeatureIds,
-    staleTime: 1000 * 60 * 60,
-    gcTime: 1000 * 60 * 60 * 6,
-    refetchOnWindowFocus: false,
-  })
-
   const featureIdSuggestions = useMemo(() => {
-    const source =
-      allFeatureIds.length > 0 ? allFeatureIds : suggestedFeatureIds
-    return uniqueSortedStrings(source)
-  }, [allFeatureIds, suggestedFeatureIds])
+    return uniqueSortedStrings(suggestedFeatureIds)
+  }, [suggestedFeatureIds])
 
   const [newFeatureId, setNewFeatureId] = useState('')
 

@@ -5,16 +5,19 @@ import styles from '../dashboard.module.css'
 import { InteractiveFilterBar } from '../islands/InteractiveFilterBar.tsx'
 import CategorySection from './CategorySection.astro'
 
-interface Props {
+const {
+  features,
+  suggestedFeatureIds,
+  allFeatures = features,
+} = Astro.props as {
   features: FeatureData[]
   suggestedFeatureIds: readonly string[]
+  allFeatures?: FeatureData[]
 }
-
-const { features, suggestedFeatureIds } = Astro.props
 
 // Pre-compute grouped features at build time
 const groupedFeatures = Object.groupBy(features, feature => feature.category)
-const displayedCategories = (Object.keys(groupedFeatures) as Category[]).sort(
+const _displayedCategories = (Object.keys(groupedFeatures) as Category[]).sort(
   (a, b) => -1 * a.localeCompare(b),
 )
 ---
@@ -24,17 +27,20 @@ const displayedCategories = (Object.keys(groupedFeatures) as Category[]).sort(
   client:load
   initialFeatures={features}
   suggestedFeatureIds={[...suggestedFeatureIds]}
+  allFeatures={allFeatures}
 />
 
 <!-- Static pre-rendered content (categories and cards) -->
 <!-- This will be enhanced/replaced by client-side interactivity -->
 <section class={styles.featuresScroll} id="features-container">
-  {displayedCategories.map(category => (
+  {
+    _displayedCategories.map(category => (
       <CategorySection
         category={category}
         features={groupedFeatures[category] || []}
       />
-    ))}
+    ))
+  }
 </section>
 
 <!-- Client-side hydration for full interactivity -->

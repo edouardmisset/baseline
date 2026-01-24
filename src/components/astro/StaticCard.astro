@@ -2,11 +2,7 @@
 import type { FeatureData } from '../../types'
 import styles from '../card.module.css'
 
-interface Props {
-  feature: FeatureData
-}
-
-const { feature } = Astro.props
+const { feature } = Astro.props as { feature: FeatureData }
 const { id, name, description, category } = feature
 ---
 

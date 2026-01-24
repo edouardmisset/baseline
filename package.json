@@ -2,6 +2,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "prebuild": "tsx scripts/fetch-webstatus-data.ts",
     "dev": "astro dev",
     "dev:vite": "vite",
     "build": "astro build",
@@ -12,7 +13,7 @@
     "format": "biome format . --write",
     "style:lint": "pnpm stylelint './src/**/*.css' --cache",
     "style:lint:fix": "pnpm style:lint --fix",
-    "typecheck": "astro check",
+    "typecheck": "tsx scripts/fetch-webstatus-data.ts && astro check",
     "check": "biome check --write . && pnpm style:lint:fix && pnpm typecheck",
     "generate:og": "tsx scripts/generate-og-image.ts"
   },

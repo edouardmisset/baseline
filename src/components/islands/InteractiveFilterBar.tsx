@@ -2,13 +2,8 @@
  * InteractiveFilterBar - Island component for filtering features
  * This hydrates immediately (client:load) as it's the main interaction point
  */
-import {
-  QueryClient,
-  QueryClientProvider,
-  useQuery,
-} from '@tanstack/react-query'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { useEffect, useMemo, useState } from 'react'
-import { fetchFeatures } from '../../api/webstatus'
 import {
   type Category,
   getCategoryColor,
@@ -30,6 +25,8 @@ declare global {
     __PRELOADED_DATA__?: {
       features: FeatureData[]
       buildTimestamp: string
+      allFeatures?: FeatureData[]
+      allFeatureIds?: string[]
     }
   }
 }
@@ -47,14 +44,24 @@ const queryClient = new QueryClient({
 interface Props {
   initialFeatures: FeatureData[]
   suggestedFeatureIds: string[]
+  allFeatures: FeatureData[]
 }
 
-function FilterBarIsland({ initialFeatures, suggestedFeatureIds }: Props) {
+function FilterBarIsland({
+  initialFeatures,
+  suggestedFeatureIds,
+  allFeatures,
+}: Props) {
   // Get preloaded data from build time
   const preloadedFeatures =
     typeof window !== 'undefined'
       ? (window.__PRELOADED_DATA__?.features ?? initialFeatures)
       : initialFeatures
+
+  const fullDataset =
+    typeof window !== 'undefined'
+      ? (window.__PRELOADED_DATA__?.allFeatures ?? allFeatures)
+      : allFeatures
 
   // Feature IDs State - combines base + custom from localStorage
   const { value: customFeatureIds, add: addCustomFeatureId } =
@@ -84,13 +91,13 @@ function FilterBarIsland({ initialFeatures, suggestedFeatureIds }: Props) {
   }
 
   // Data Query - uses preloaded data as initial, fetches fresh in background
-  const { data: features = preloadedFeatures } = useQuery<FeatureData[]>({
-    queryKey: ['features', allFeatureIds.join(',')],
-    queryFn: () => fetchFeatures(allFeatureIds),
-    initialData: preloadedFeatures,
-    staleTime: 0, // Always revalidate in background (stale-while-revalidate)
-    enabled: allFeatureIds.length > 0,
-  })
+  const features = useMemo(() => {
+    // Map selected IDs to entries from the full dataset
+    const byId = new Map(fullDataset.map(f => [f.id, f]))
+    return allFeatureIds
+      .map(id => byId.get(id))
+      .filter(Boolean) as FeatureData[]
+  }, [allFeatureIds, fullDataset])
 
   // Processing & Filtering
   const processedFeatures = useMemo(() => {

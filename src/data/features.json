@@ -1,0 +1,517 @@
+{
+  "features": [
+    {
+      "id": "accent-color",
+      "name": "accent-color",
+      "description": "The accent-color CSS property sets a color for checkboxes, radio buttons, and other form controls.",
+      "category": "CSS",
+      "status": "limited",
+      "date": "9999-12-31"
+    },
+    {
+      "id": "anchor-positioning",
+      "name": "Anchor positioning",
+      "description": "Anchor positioning places an element based on the position of another element. For example, you can place a tooltip next to the content it references.",
+      "category": "CSS",
+      "status": "limited",
+      "date": "9999-12-31"
+    },
+    {
+      "id": "array-by-copy",
+      "name": "Array by copy",
+      "description": "The toReversed(), toSorted(), toSpliced(), and with() methods of arrays and typed arrays return changed copies of arrays. They stand in contrast to methods such as sort() or reverse() that change arrays in place.",
+      "category": "JavaScript",
+      "status": "widely",
+      "date": "2023-07-04"
+    },
+    {
+      "id": "array-group",
+      "name": "Array grouping",
+      "description": "The Object.groupBy() and Map.groupBy() static methods group values of arrays and iterables based on a function that returns a key for each value.",
+      "category": "JavaScript",
+      "status": "newly",
+      "date": "2024-03-05"
+    },
+    {
+      "id": "attr",
+      "name": "attr()",
+      "description": "The attr() CSS function, in the context of any property, returns the value of an attribute of an HTML element, with the option to return it as a specific type or unit. You can set a default value for missing or invalid attributes.",
+      "category": "CSS",
+      "status": "limited",
+      "date": "9999-12-31"
+    },
+    {
+      "id": "backdrop-filter",
+      "name": "backdrop-filter",
+      "description": "The backdrop-filter CSS property applies graphical effects such as blurring or color shifting to the area behind an element.",
+      "category": "CSS",
+      "status": "newly",
+      "date": "2024-09-16"
+    },
+    {
+      "id": "backdrop",
+      "name": "::backdrop",
+      "description": "The ::backdrop CSS pseudo-element is a box underneath an element in the top layer, such as a <dialog>. It can be used to create obscuring effects distinguishing a modal element from the elements underneath.",
+      "category": "CSS",
+      "status": "widely",
+      "date": "2022-03-14"
+    },
+    {
+      "id": "calc-size",
+      "name": "calc-size()",
+      "description": "The calc-size() CSS function computes mathematical expressions that include height and width keyword values, for example calc-size(fit-content, size / 2). Not to be confused with the calc() CSS function, which cannot use keyword values.",
+      "category": "CSS",
+      "status": "limited",
+      "date": "9999-12-31"
+    },
+    {
+      "id": "cascade-layers",
+      "name": "Cascade layers",
+      "description": "The @layer CSS at-rule avoids specificity conflicts by providing priority levels for different groups of CSS rules, such as low-priority styles like resets, and high-priority styles like UI components.",
+      "category": "CSS",
+      "status": "widely",
+      "date": "2022-03-14"
+    },
+    {
+      "id": "color-mix",
+      "name": "color-mix()",
+      "description": "The color-mix() function mixes two colors in a given color space and by a given amount. Commonly, lighter or darker variations of a color are created by mixing with white or black.",
+      "category": "CSS",
+      "status": "widely",
+      "date": "2023-05-09"
+    },
+    {
+      "id": "container-queries",
+      "name": "Container queries",
+      "description": "Container size queries with the @container at-rule apply styles to an element based on the dimensions of its container.",
+      "category": "CSS",
+      "status": "widely",
+      "date": "2023-02-14"
+    },
+    {
+      "id": "content-visibility",
+      "name": "content-visibility",
+      "description": "The content-visibility CSS property delays rendering an element, including layout and painting, until it is needed.",
+      "category": "CSS",
+      "status": "newly",
+      "date": "2025-09-15"
+    },
+    {
+      "id": "contrast-color",
+      "name": "contrast-color()",
+      "description": "The contrast-color() CSS function picks a color that has guaranteed contrast against a specified foreground or background color.",
+      "category": "CSS",
+      "status": "limited",
+      "date": "9999-12-31"
+    },
+    {
+      "id": "customizable-select",
+      "name": "Customizable <select>",
+      "description": "The <select> element's appearance, including the button, selected option, picker dropdown, and options, can be customized using CSS.",
+      "category": "Web Platform",
+      "status": "limited",
+      "date": "9999-12-31"
+    },
+    {
+      "id": "datalist",
+      "name": "<datalist>",
+      "description": "The <datalist> element sets recommended values for an <input> element. Browsers may show a dropdown menu of all values or match values as the user types.",
+      "category": "HTML",
+      "status": "limited",
+      "date": "9999-12-31"
+    },
+    {
+      "id": "details-name",
+      "name": "Mutually exclusive <details> elements",
+      "description": "Multiple <details> elements which use the same name attribute are mutually exclusive. When one member of the group is opened, all other members are closed.",
+      "category": "HTML",
+      "status": "newly",
+      "date": "2024-09-03"
+    },
+    {
+      "id": "dialog-closedby",
+      "name": "<dialog closedby>",
+      "description": "The closedby HTML attribute for <dialog> sets which user actions close a dialog. For example, closedby=\"any\" allows the dialog to be closed by clicking outside of it.",
+      "category": "HTML",
+      "status": "limited",
+      "date": "9999-12-31"
+    },
+    {
+      "id": "dialog",
+      "name": "<dialog>",
+      "description": "The <dialog> HTML element represents a modal or non-modal dialog box, such as a confirmation prompt or a subwindow used to enter data.",
+      "category": "HTML",
+      "status": "widely",
+      "date": "2022-03-14"
+    },
+    {
+      "id": "field-sizing",
+      "name": "field-sizing",
+      "description": "The field-sizing CSS property allows form controls such as <textarea> to be sized based on their content.",
+      "category": "CSS",
+      "status": "limited",
+      "date": "9999-12-31"
+    },
+    {
+      "id": "focus-visible",
+      "name": ":focus-visible",
+      "description": "The :focus-visible CSS pseudo-class selects elements that match the :focus pseudo-class and meets the browser's criteria for visually emphasizing focused elements.",
+      "category": "CSS",
+      "status": "widely",
+      "date": "2022-03-14"
+    },
+    {
+      "id": "function",
+      "name": "@function",
+      "description": "The @function CSS at-rule defines a custom function that takes CSS values or custom properties as arguments, and returns a CSS value. It can be based on conditional logic such as by using the @media at-rule.",
+      "category": "CSS",
+      "status": "limited",
+      "date": "9999-12-31"
+    },
+    {
+      "id": "gradient-interpolation",
+      "name": "Gradient interpolation",
+      "description": "Gradient interpolation controls how the colors between gradient stops are calculated in CSS. For example, linear-gradient(to right in oklch longer hue, red, red); calculates in the oklch color space, with the hue going all the way around the hue circle from red back to red.",
+      "category": "CSS",
+      "status": "newly",
+      "date": "2024-06-11"
+    },
+    {
+      "id": "hanging-punctuation",
+      "name": "Hanging punctuation",
+      "description": "The hanging-punctuation CSS property puts punctuation characters outside of the box to align the text with the rest of the document.",
+      "category": "CSS",
+      "status": "limited",
+      "date": "9999-12-31"
+    },
+    {
+      "id": "has",
+      "name": ":has()",
+      "description": "The :has() CSS functional pseudo-class matches an element if any of the selectors passed as parameters would match at least one element.",
+      "category": "CSS",
+      "status": "newly",
+      "date": "2023-12-19"
+    },
+    {
+      "id": "if",
+      "name": "if()",
+      "description": "The if() CSS function is an inline conditional value that returns a value based on a set of conditions.",
+      "category": "CSS",
+      "status": "limited",
+      "date": "9999-12-31"
+    },
+    {
+      "id": "intl-duration-format",
+      "name": "Intl.DurationFormat",
+      "description": "The Intl.DurationFormat API creates a locale-aware formatter that turns an object representing a duration (such as days, hours, and minutes) into a string.",
+      "category": "JavaScript",
+      "status": "newly",
+      "date": "2025-03-04"
+    },
+    {
+      "id": "intl-list-format",
+      "name": "Intl.ListFormat",
+      "description": "The Intl.ListFormat API creates a locale-aware formatter that turns iterable objects into localized strings.",
+      "category": "JavaScript",
+      "status": "widely",
+      "date": "2021-04-26"
+    },
+    {
+      "id": "intl-relative-time-format",
+      "name": "Intl.RelativeTimeFormat",
+      "description": "The Intl.RelativeTimeFormat API creates a locale-aware formatter that turns an object representing a relative time (such as '1 day ago') into a localized string.",
+      "category": "JavaScript",
+      "status": "widely",
+      "date": "2020-09-16"
+    },
+    {
+      "id": "invoker-commands",
+      "name": "Invoker commands",
+      "description": "The command and commandfor attributes for the <button> HTML element dispatch an action to an element when the button is invoked (by click or keystroke), as a declarative alternative to addEventListener() calls or onclick attribute handlers.",
+      "category": "HTML",
+      "status": "newly",
+      "date": "2025-12-12"
+    },
+    {
+      "id": "is",
+      "name": ":is()",
+      "description": "The :is() CSS functional pseudo-class takes a selector list as its argument, and matches any element that can be selected by one of the selectors in that list.",
+      "category": "CSS",
+      "status": "widely",
+      "date": "2021-01-21"
+    },
+    {
+      "id": "isolation",
+      "name": "isolation",
+      "description": "The isolation CSS property creates a new stacking context, which impacts z-index ordering and blend modes.",
+      "category": "CSS",
+      "status": "widely",
+      "date": "2020-01-15"
+    },
+    {
+      "id": "light-dark",
+      "name": "light-dark()",
+      "description": "The light-dark() CSS function accepts two colors and uses one depending on the current color scheme.",
+      "category": "CSS",
+      "status": "newly",
+      "date": "2024-05-13"
+    },
+    {
+      "id": "logical-properties",
+      "name": "Logical properties",
+      "description": "CSS logical properties control borders, size, margin, and padding with directions and dimensions relative to the writing mode. For example, in a left to right, top to bottom writing mode, block-end refers to the bottom. Also known as flow relative.",
+      "category": "CSS",
+      "status": "widely",
+      "date": "2021-09-20"
+    },
+    {
+      "id": "masonry",
+      "name": "Masonry",
+      "description": "The display: grid-lanes or display: inline-grid-lanes CSS declaration creates a layout where items are tightly packed, like brickwork, in parallel lanes. Items are placed one by one in the lane that has the most available space.",
+      "category": "CSS",
+      "status": "limited",
+      "date": "9999-12-31"
+    },
+    {
+      "id": "min-max-clamp",
+      "name": "min(), max(), and clamp()",
+      "description": "The min() and max() CSS functions return the minimum or maximum of the arguments, while clamp() clamps a value to a given range.",
+      "category": "CSS",
+      "status": "widely",
+      "date": "2020-07-28"
+    },
+    {
+      "id": "modal",
+      "name": ":modal",
+      "description": "The :modal pseudo-class selects elements that put other elements into a non-interactive state, such as a fullscreen element or a <dialog> element used with showModal().",
+      "category": "CSS",
+      "status": "widely",
+      "date": "2022-09-02"
+    },
+    {
+      "id": "nesting",
+      "name": "Nesting",
+      "description": "CSS nesting allows for shorter selectors, easier reading, and more modularity by nesting rules inside others.",
+      "category": "CSS",
+      "status": "newly",
+      "date": "2023-12-11"
+    },
+    {
+      "id": "not",
+      "name": ":not()",
+      "description": "The :not() functional pseudo-class matches elements that do not match the selectors in its argument.",
+      "category": "CSS",
+      "status": "widely",
+      "date": "2021-01-21"
+    },
+    {
+      "id": "oklab",
+      "name": "Oklab and OkLCh",
+      "description": "The Oklab color space expresses colors in terms of lightness and how red/green and blue/yellow a color is, aiming to match how humans perceive colors. OkLCh is a variant of Oklab with polar coordinates. These color spaces can be used with the CSS oklab() and oklch() functions.",
+      "category": "CSS",
+      "status": "widely",
+      "date": "2023-05-09"
+    },
+    {
+      "id": "overscroll-behavior",
+      "name": "overscroll-behavior",
+      "description": "The overscroll-behavior CSS property disables default scrolling behaviors when the edges of a scrolling area are reached.",
+      "category": "CSS",
+      "status": "widely",
+      "date": "2022-09-12"
+    },
+    {
+      "id": "popover-hint",
+      "name": "popover=\"hint\"",
+      "description": "The popover=\"hint\" global HTML attribute creates a popover that is subordinate to popovers with a popover=\"auto\" attribute. You can use this to create tooltips that don't dismiss auto popovers.",
+      "category": "HTML",
+      "status": "limited",
+      "date": "9999-12-31"
+    },
+    {
+      "id": "popover",
+      "name": "Popover",
+      "description": "The popover HTML attribute creates an overlay to display content on top of other page content. Popovers can be shown declaratively using HTML, or using the showPopover() method.",
+      "category": "HTML",
+      "status": "newly",
+      "date": "2025-01-27"
+    },
+    {
+      "id": "prefers-color-scheme",
+      "name": "prefers-color-scheme media query",
+      "description": "The prefers-color-scheme CSS media query sets styles based on the requested color scheme, light or dark.",
+      "category": "CSS",
+      "status": "widely",
+      "date": "2020-01-15"
+    },
+    {
+      "id": "registered-custom-properties",
+      "name": "Registered custom properties",
+      "description": "The CSS.registerProperty() static method and the @property CSS at-rule register custom properties for which types and behaviors can be defined.",
+      "category": "CSS",
+      "status": "newly",
+      "date": "2024-07-09"
+    },
+    {
+      "id": "relative-color",
+      "name": "Relative colors",
+      "description": "The from keyword for color functions (color(), hsl(), oklch(), etc.) creates a new color based on a given color by modifying the values of the input color. Also known as relative color syntax (RCS).",
+      "category": "CSS",
+      "status": "newly",
+      "date": "2024-09-16"
+    },
+    {
+      "id": "scope",
+      "name": "@scope",
+      "description": "The @scope CSS at-rule sets the scope for a group of rules.",
+      "category": "CSS",
+      "status": "newly",
+      "date": "2025-12-09"
+    },
+    {
+      "id": "scroll-buttons",
+      "name": "::scroll-button",
+      "description": "The ::scroll-button(<dir>) CSS pseudo-element is a focusable button which scrolls its originating scroll container element in the specified direction.",
+      "category": "CSS",
+      "status": "limited",
+      "date": "9999-12-31"
+    },
+    {
+      "id": "scroll-driven-animations",
+      "name": "Scroll-driven animations",
+      "description": "The animation-timeline, scroll-timeline, and view-timeline CSS properties advance animations based on the user's scroll position.",
+      "category": "CSS",
+      "status": "limited",
+      "date": "9999-12-31"
+    },
+    {
+      "id": "scroll-markers",
+      "name": "Scroll markers",
+      "description": "A scroll marker scrolls a container to a scroll target. The ::scroll-marker CSS pseudo-element selects a scroll marker in a ::scroll-marker-group pseudo-element, generated before or after the scroll container. You can use them to navigate and style tables of contents, tab panels, and carousels.",
+      "category": "CSS",
+      "status": "limited",
+      "date": "9999-12-31"
+    },
+    {
+      "id": "search",
+      "name": "<search>",
+      "description": "The <search> HTML element is a container that represents the parts of the web page with search functionality.",
+      "category": "HTML",
+      "status": "newly",
+      "date": "2023-10-13"
+    },
+    {
+      "id": "set-methods",
+      "name": "Set methods",
+      "description": "The difference(), intersection(), isDisjointFrom(), isSubsetOf(), isSupersetOf(), symmetricDifference(), and union() methods of the JavaScript Set object performs operations between two sets.",
+      "category": "JavaScript",
+      "status": "newly",
+      "date": "2024-06-11"
+    },
+    {
+      "id": "share",
+      "name": "navigator.share()",
+      "description": "The navigator.share() method invokes the device's native sharing mechanism and passes text, links, files, and other content to share targets. Also known as the Web Share API.",
+      "category": "Web Platform",
+      "status": "limited",
+      "date": "9999-12-31"
+    },
+    {
+      "id": "starting-style",
+      "name": "@starting-style",
+      "description": "The @starting-style CSS at-rule sets the starting values for properties that are transitioning when the target element's style is first updated.",
+      "category": "CSS",
+      "status": "newly",
+      "date": "2024-08-06"
+    },
+    {
+      "id": "subgrid",
+      "name": "Subgrid",
+      "description": "The subgrid value for the grid-template-columns and grid-template-rows properties allows a grid item to inherit the grid definition of its parent grid container.",
+      "category": "CSS",
+      "status": "newly",
+      "date": "2023-09-15"
+    },
+    {
+      "id": "supports-at-rule",
+      "name": "at-rule()",
+      "description": "The at-rule() function, when used with @supports, checks if a CSS at-rule is supported. For example @supports at-rule(@starting-style) checks if the @starting-style at-rule is supported.",
+      "category": "CSS",
+      "status": "limited",
+      "date": "9999-12-31"
+    },
+    {
+      "id": "target-text",
+      "name": "::target-text",
+      "description": "The ::target-text pseudo-element allows you to style text highlighted by a URL text fragment such as #:~:text=snippet.",
+      "category": "CSS",
+      "status": "newly",
+      "date": "2024-12-11"
+    },
+    {
+      "id": "temporal",
+      "name": "Temporal",
+      "description": "The Temporal API allows you to work with dates, times, time zones, and durations. It is more powerful than the Date API.",
+      "category": "JavaScript",
+      "status": "limited",
+      "date": "9999-12-31"
+    },
+    {
+      "id": "text-wrap-balance",
+      "name": "text-wrap: balance",
+      "description": "The text-wrap: balance CSS declaration balances the length of each line when text is broken into multiple lines. Also known as headline balancing.",
+      "category": "CSS",
+      "status": "newly",
+      "date": "2024-05-13"
+    },
+    {
+      "id": "text-wrap-pretty",
+      "name": "text-wrap: pretty",
+      "description": "The text-wrap: pretty CSS declaration prioritizes better layout over speed when text is broken into multiple lines.",
+      "category": "CSS",
+      "status": "limited",
+      "date": "9999-12-31"
+    },
+    {
+      "id": "top-level-await",
+      "name": "Top-level await",
+      "description": "The await keyword, when used at the top level of a module (outside of an async function), delays parent module execution until after a promise fulfills.",
+      "category": "JavaScript",
+      "status": "limited",
+      "date": "9999-12-31"
+    },
+    {
+      "id": "transition-behavior",
+      "name": "transition-behavior",
+      "description": "The transition-behavior: allow-discrete CSS declaration allows transitions for properties whose animation behavior is discrete. Such properties can't be interpolated and swap from their start value to the end value at 50%.",
+      "category": "CSS",
+      "status": "newly",
+      "date": "2024-08-06"
+    },
+    {
+      "id": "user-pseudos",
+      "name": ":user-valid and :user-invalid",
+      "description": "The :user-valid and :user-invalid pseudo-classes match form controls that have been marked as valid or invalid based on their validation constraints.",
+      "category": "CSS",
+      "status": "newly",
+      "date": "2023-11-02"
+    },
+    {
+      "id": "view-transitions",
+      "name": "View transitions",
+      "description": "View transitions allow you to create animated visual transitions between different states of a document.",
+      "category": "CSS",
+      "status": "newly",
+      "date": "2025-10-14"
+    },
+    {
+      "id": "where",
+      "name": ":where()",
+      "description": "The :where() CSS functional pseudo-class takes a selector list as its argument, and matches any element that can be selected by one of the selectors in that list. It is functionally equivalent to the selectors in the list, but doesn't affect the CSS rule specificity.",
+      "category": "CSS",
+      "status": "widely",
+      "date": "2021-01-21"
+    }
+  ],
+  "buildTimestamp": "2026-01-24T21:08:01.078Z"
+}

@@ -1,18 +1,34 @@
 ---
-import { fetchFeatures } from '../api/webstatus'
 import { AppHeader } from '../components/app-header'
 import Dashboard from '../components/astro/Dashboard.astro'
 import { WEB_FEATURES } from '../constants/web-features'
+import featureIdsData from '../data/feature-ids.json'
+import featuresData from '../data/features.json'
 import Layout from '../layouts/Layout.astro'
 
-// Build-time data fetching
-// This runs at BUILD TIME and pre-renders the page with real data
-const features = await fetchFeatures([...WEB_FEATURES])
-const buildTimestamp = new Date().toISOString()
+// Build-time data loading from pre-fetched JSON
+const allFeatures = (featuresData.features ??
+  []) as import('../types').FeatureData[]
+const allFeatureIds = (featureIdsData.ids ?? []) as string[]
+const buildTimestamp = (featuresData.buildTimestamp ??
+  new Date().toISOString()) as string
+
+// Pre-render a subset of features (default list)
+const featureIdsSet = new Set(WEB_FEATURES as readonly string[])
+const features = allFeatures.filter(f => featureIdsSet.has(f.id))
 ---
 
-<Layout features={features} buildTimestamp={buildTimestamp}>
+<Layout
+  features={features}
+  buildTimestamp={buildTimestamp}
+  allFeatures={allFeatures}
+  allFeatureIds={allFeatureIds}
+>
   <AppHeader />
 
-  <Dashboard features={features} suggestedFeatureIds={WEB_FEATURES} />
+  <Dashboard
+    features={features}
+    suggestedFeatureIds={allFeatureIds}
+    allFeatures={allFeatures}
+  />
 </Layout>

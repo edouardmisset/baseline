@@ -9,23 +9,21 @@ import styles from '../dashboard.module.css'
 import { LinkIcon } from '../icons'
 import StaticCard from './StaticCard.astro'
 
-interface Props {
+const { category, features } = Astro.props as {
   category: Category
   features: FeatureData[]
 }
-
-const { category, features } = Astro.props
-const slug = slugify(category)
-const categoryColor = getCategoryColor(category)
+const _slug = slugify(category)
+const _categoryColor = getCategoryColor(category)
 ---
 
 <details open data-category={category}>
   <summary
     class={`${styles.categoryHeader} glass`}
-    style={`--category-color: ${categoryColor}`}
+    style={`--category-color: ${_categoryColor}`}
   >
-    <h2 id={slug} class={styles.categoryTitle}>{category}</h2>
-    <a class={styles.anchorLink} href={`#${slug}`}>
+    <h2 id={_slug} class={styles.categoryTitle}>{category}</h2>
+    <a class={styles.anchorLink} href={`#${_slug}`}>
       <span aria-hidden="true">
         <LinkIcon />
       </span>
