@@ -96,6 +96,11 @@
   box-sizing: border-box;
 }
 
+::target-text {
+  background-color: rebeccapurple;
+  color: white;
+}
+
 body {
   margin: 0;
   min-block-size: 100vh;

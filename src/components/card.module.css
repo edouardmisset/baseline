@@ -146,5 +146,6 @@
 }
 
 .description {
+  min-block-size: 4lh;
   color: var(--color-muted);
 }
