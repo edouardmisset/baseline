@@ -1,17 +1,18 @@
 import { useQuery } from '@tanstack/react-query'
 import { useMemo, useState } from 'react'
 import { fetchFeatures } from '../api/webstatus'
+import type { Category } from '../constants/category-colors'
 import { STORAGE_KEYS } from '../constants/storage-keys'
 import { uniqueSortedStrings } from '../lib/unique-sorted'
-import type { FeatureData } from '../types'
+import type { FeatureData, Status } from '../types'
 import { useLocalStorageStringArray } from './use-local-storage-string-array'
 
 export type SortOrder = 'newest' | 'oldest' | 'az' | 'za'
 
 export interface FeatureFilters {
   search: string
-  category: string[]
-  status: string[]
+  category: Category[]
+  status: Status[]
   sort: SortOrder
 }
 
@@ -28,12 +29,10 @@ export function useFeatures({ featureIds: baseFeatureIds }: UseFeaturesProps) {
     return uniqueSortedStrings([...baseFeatureIds, ...customFeatureIds])
   }, [baseFeatureIds, customFeatureIds])
 
-  // Starred/Favorites functionality removed
-
   // Filters State
   const [search, setSearch] = useState('')
-  const [category, setCategory] = useState<string[]>(['all'])
-  const [status, setStatus] = useState<string[]>(['all'])
+  const [category, setCategory] = useState<(Category | 'all')[]>(['all'])
+  const [status, setStatus] = useState<(Status | 'all')[]>(['all'])
   const [sort, setSort] = useState<SortOrder>('newest')
 
   const filters = { search, category, status, sort }
@@ -58,14 +57,17 @@ export function useFeatures({ featureIds: baseFeatureIds }: UseFeaturesProps) {
   // Processing & Filtering
   const processedFeatures = useMemo(() => {
     return features
-      .filter(f => {
-        if (search && !f.name.toLowerCase().includes(search.toLowerCase()))
+      .filter(feature => {
+        if (
+          search &&
+          !feature.name.toLowerCase().includes(search.toLowerCase())
+        )
           return false
         // If "all" is selected, include all categories. If nothing selected, exclude all.
         if (
           category.length > 0 &&
           !category.includes('all') &&
-          !category.includes(f.category)
+          !category.includes(feature.category)
         )
           return false
         if (category.length === 0) return false
@@ -73,22 +75,22 @@ export function useFeatures({ featureIds: baseFeatureIds }: UseFeaturesProps) {
         if (
           status.length > 0 &&
           !status.includes('all') &&
-          !status.includes(f.status)
+          !status.includes(feature.status)
         )
           return false
         if (status.length === 0) return false
         return true
       })
       .sort((a, b) => {
-        switch (sort) {
-          case 'oldest':
-            return a.date.localeCompare(b.date)
-          case 'az':
-            return a.name.localeCompare(b.name)
-          case 'za':
-            return b.name.localeCompare(a.name)
-          default: // newest
-            return b.date.localeCompare(a.date)
+        if (sort === 'oldest') {
+          return a.date.localeCompare(b.date)
+        } else if (sort === 'az') {
+          return a.name.localeCompare(b.name)
+        } else if (sort === 'za') {
+          return b.name.localeCompare(a.name)
+        } else {
+          // newest
+          return b.date.localeCompare(a.date)
         }
       })
   }, [features, search, category, status, sort])

@@ -1,5 +1,8 @@
 ---
-import { getCategoryColor } from '../../constants/category-colors'
+import {
+  type Category,
+  getCategoryColor,
+} from '../../constants/category-colors'
 import { slugify } from '../../lib/slugify'
 import type { FeatureData } from '../../types'
 import styles from '../dashboard.module.css'
@@ -7,7 +10,7 @@ import { LinkIcon } from '../icons'
 import StaticCard from './StaticCard.astro'
 
 interface Props {
-  category: string
+  category: Category
   features: FeatureData[]
 }
 
@@ -21,9 +24,7 @@ const categoryColor = getCategoryColor(category)
     class={`${styles.categoryHeader} glass`}
     style={`--category-color: ${categoryColor}`}
   >
-    <h2 id={slug} class={styles.categoryTitle}>
-      {category}
-    </h2>
+    <h2 id={slug} class={styles.categoryTitle}>{category}</h2>
     <a class={styles.anchorLink} href={`#${slug}`}>
       <span aria-hidden="true">
         <LinkIcon />

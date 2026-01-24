@@ -1,10 +1,12 @@
-export function getCategory(links: { link: string }[] | undefined) {
+import type { Category } from "../constants/category-colors"
+
+export function getCategory(links?: { link: string }[]): Category {
   if (!links || links.length === 0) return 'Web Platform'
 
-  for (const l of links) {
-    if (l.link.includes('csswg') || l.link.includes('css')) return 'CSS'
-    if (l.link.includes('tc39') || l.link.includes('ecma')) return 'JavaScript'
-    if (l.link.includes('html') || l.link.includes('whatwg')) return 'HTML'
+  for (const { link } of links) {
+    if (link.includes('csswg') || link.includes('css')) return 'CSS'
+    if (link.includes('tc39') || link.includes('ecma')) return 'JavaScript'
+    if (link.includes('html') || link.includes('whatwg')) return 'HTML'
   }
 
   return 'Web Platform'

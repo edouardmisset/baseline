@@ -9,13 +9,16 @@ import {
 } from '@tanstack/react-query'
 import { useEffect, useMemo, useState } from 'react'
 import { fetchFeatures } from '../../api/webstatus'
-import { getCategoryColor } from '../../constants/category-colors'
+import {
+  type Category,
+  getCategoryColor,
+} from '../../constants/category-colors'
 import { STORAGE_KEYS } from '../../constants/storage-keys'
 import type { SortOrder } from '../../hooks/use-features'
 import { useLocalStorageStringArray } from '../../hooks/use-local-storage-string-array'
 import { slugify } from '../../lib/slugify'
 import { uniqueSortedStrings } from '../../lib/unique-sorted'
-import type { FeatureData } from '../../types'
+import type { FeatureData, Status } from '../../types'
 import { Card } from '../card'
 import styles from '../dashboard.module.css'
 import { FilterBar } from '../filter-bar'
@@ -68,8 +71,8 @@ function FilterBarIsland({ initialFeatures, suggestedFeatureIds }: Props) {
 
   // Filters State
   const [search, setSearch] = useState('')
-  const [category, setCategory] = useState<string[]>(['all'])
-  const [status, setStatus] = useState<string[]>(['all'])
+  const [category, setCategory] = useState<(Category | 'all')[]>(['all'])
+  const [status, setStatus] = useState<(Status | 'all')[]>(['all'])
   const [sort, setSort] = useState<SortOrder>('newest')
 
   const filters = { search, category, status, sort }
@@ -131,7 +134,7 @@ function FilterBarIsland({ initialFeatures, suggestedFeatureIds }: Props) {
     [processedFeatures],
   )
 
-  const displayedCategories = Object.keys(groupedFeatures).sort(
+  const displayedCategories = (Object.keys(groupedFeatures) as Category[]).sort(
     (a, b) => -1 * a.localeCompare(b),
   )
 

@@ -1,9 +1,10 @@
 import { useQuery } from '@tanstack/react-query'
 import { useMemo, useState } from 'react'
 import { fetchAllFeatureIds } from '../api/webstatus'
+import type { Category } from '../constants/category-colors'
 import type { SortOrder } from '../hooks/use-features'
 import { uniqueSortedStrings } from '../lib/unique-sorted'
-import type { FeatureData } from '../types'
+import type { FeatureData, Status } from '../types'
 import styles from './filter-bar.module.css'
 import {
   ComboboxField,
@@ -24,14 +25,14 @@ interface Props {
   features: FeatureData[]
   filters: {
     search: string
-    category: string[]
-    status: string[]
+    category: (Category | 'all')[]
+    status: (Status | 'all')[]
     sort: SortOrder
   }
   setFilters: {
     setSearch: (value: string) => void
-    setCategory: (value: string[]) => void
-    setStatus: (value: string[]) => void
+    setCategory: (value: (Category | 'all')[]) => void
+    setStatus: (value: (Status | 'all')[]) => void
     setSort: (value: SortOrder) => void
   }
 

@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { getCategoryColor } from '../constants/category-colors'
+import { type Category, getCategoryColor } from '../constants/category-colors'
 import { useFeatures } from '../hooks/use-features'
 import { slugify } from '../lib/slugify'
 import type { FeatureData } from '../types'
@@ -28,7 +28,7 @@ export function Dashboard({ featureIds }: Props) {
     [processedFeatures],
   )
 
-  const displayedCategories = Object.keys(groupedFeatures).sort(
+  const displayedCategories = (Object.keys(groupedFeatures) as Category[]).sort(
     (a, b) => -1 * a.localeCompare(b),
   )
 

@@ -55,6 +55,13 @@
       "indentStyle": "space"
     }
   },
+  "html": {
+    "formatter": {
+      "enabled": true,
+      "indentScriptAndStyle": true
+    },
+    "experimentalFullSupportEnabled": true
+  },
   "assist": {
     "enabled": true
   },

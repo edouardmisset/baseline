@@ -20,13 +20,5 @@ export function useLocalStorageStringArray(key: string) {
     })
   }, [])
 
-  const remove = useCallback((next: string) => {
-    setValue(prev => prev.filter(v => v !== next))
-  }, [])
-
-  const clear = useCallback(() => {
-    setValue([])
-  }, [])
-
-  return { value, setValue, add, remove, clear }
+  return { value, setValue, add }
 }

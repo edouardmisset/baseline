@@ -1,8 +1,12 @@
+import type { Category } from './constants/category-colors'
+
+export type Status = 'limited' | 'newly' | 'widely' | 'unknown'
+
 export interface FeatureData {
   id: string
   name: string
   description: string
-  category: 'HTML' | 'CSS' | 'JavaScript' | 'Web Platform'
-  status: 'limited' | 'newly' | 'widely' | 'unknown'
+  category: Category
+  status: Status
   date: string
 }
