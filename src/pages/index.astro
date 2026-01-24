@@ -1,5 +1,6 @@
 ---
 import { fetchFeatures } from '../api/webstatus'
+import { AppHeader } from '../components/app-header'
 import Dashboard from '../components/astro/Dashboard.astro'
 import { WEB_FEATURES } from '../constants/web-features'
 import Layout from '../layouts/Layout.astro'
@@ -8,25 +9,10 @@ import Layout from '../layouts/Layout.astro'
 // This runs at BUILD TIME and pre-renders the page with real data
 const features = await fetchFeatures([...WEB_FEATURES])
 const buildTimestamp = new Date().toISOString()
-
-console.log(`[Build] Fetched ${features.length} features at ${buildTimestamp}`)
 ---
 
 <Layout features={features} buildTimestamp={buildTimestamp}>
-  <header class="appHeader">
-    <h1 class="appTitle">Baseline feature dashboard</h1>
-    <p class="appSubtitle">
-      Keep an eye on Baseline status from{' '}
-      <a
-        href="https://webstatus.dev"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="appLink"
-      >
-        webstatus.dev
-      </a>.
-    </p>
-  </header>
+  <AppHeader />
 
   <Dashboard features={features} suggestedFeatureIds={WEB_FEATURES} />
 </Layout>
