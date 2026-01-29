@@ -28,6 +28,7 @@ export const WEB_FEATURES = [
   'hanging-punctuation',
   'has',
   'if',
+  'interest-invokers',
   'intl-duration-format',
   'intl-list-format',
   'intl-relative-time-format',
