@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { useMemo, useState } from 'react'
+import { type SubmitEventHandler, useMemo, useState } from 'react'
 import { fetchAllFeatureIds } from '../api/webstatus'
 import type { Category } from '../constants/category-colors'
 import type { SortOrder } from '../hooks/use-features'
@@ -87,7 +87,7 @@ export function FilterBar({
 
   const [newFeatureId, setNewFeatureId] = useState('')
 
-  const onSubmitNewFeature = (event: React.FormEvent<HTMLFormElement>) => {
+  const onSubmitNewFeature: SubmitEventHandler<HTMLFormElement> = event => {
     event.preventDefault()
     const next = newFeatureId.trim()
     if (!next || !featureIdSuggestions.includes(next)) return
