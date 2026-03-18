@@ -8,6 +8,7 @@
 
 .controlsContainer {
   display: flex;
+  flex-wrap: wrap;
   align-items: flex-end;
   gap: var(--space-4);
   padding: var(--space-4);
@@ -24,6 +25,7 @@
 
 .addFeatureForm {
   display: flex;
+  flex-wrap: wrap;
   align-items: flex-end;
   gap: var(--space-3);
 }

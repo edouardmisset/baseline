@@ -1,13 +1,13 @@
 :root {
   /* Fonts */
   --font-sans:
-    "Atkinson Hyperlegible", ui-sans-serif, system-ui, -apple-system,
-    blinkmacsystemfont, "Segoe UI", roboto, helvetica, arial,
-    "Apple Color Emoji", "Segoe UI Emoji";
+    'Atkinson Hyperlegible', ui-sans-serif, system-ui, -apple-system,
+    blinkmacsystemfont, 'Segoe UI', roboto, helvetica, arial,
+    'Apple Color Emoji', 'Segoe UI Emoji';
   --font-mono:
-    "Atkinson Hyperlegible Mono", ui-monospace, sfmono-regular, menlo, monaco,
-    consolas, "Liberation Mono", "Courier New", monospace;
-  --font-fancy: "Nabla", system-ui;
+    'Atkinson Hyperlegible Mono', ui-monospace, sfmono-regular, menlo, monaco,
+    consolas, 'Liberation Mono', 'Courier New', monospace;
+  --font-fancy: 'Nabla', system-ui;
 
   /* Type scale */
   --font-size-0: 0.8125rem;
@@ -103,7 +103,7 @@
 
 body {
   margin: 0;
-  min-block-size: 100vh;
+  min-block-size: 100dvh;
   block-size: 100dvh;
   font-size: var(--font-size-2);
   line-height: 1.5;

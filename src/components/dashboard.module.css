@@ -11,6 +11,7 @@
   position: sticky;
   inset-block-start: 8rem;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: var(--space-2);
   z-index: 20;
@@ -54,7 +55,10 @@
 .featuresGrid {
   display: grid;
   gap: var(--space-4);
-  grid-template-columns: repeat(auto-fill, minmax(38ch, 1fr));
+  grid-template-columns: repeat(
+    auto-fill,
+    [col-start] minmax(38ch, 1fr) [col-end]
+  );
   margin-block-start: var(--space-4);
 }
 

@@ -3,54 +3,59 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "dev:vite": "vite",
+    "dev:vite": "vp dev",
     "build": "astro build",
-    "build:vite": "vite build",
+    "build:vite": "vp build",
     "preview": "astro preview",
-    "preview:vite": "vite preview",
-    "lint:fix": "biome lint . --write",
-    "format": "biome format . --write",
+    "preview:vite": "vp preview",
+    "lint:fix": "vp lint --fix",
+    "format": "vp fmt --write",
     "style:lint": "pnpm stylelint './src/**/*.css' --cache",
     "style:lint:fix": "pnpm style:lint --fix",
     "typecheck": "astro check",
-    "check": "biome check --write . && pnpm style:lint:fix && pnpm typecheck",
-    "generate:og": "node scripts/generate-og-image.ts"
+    "check": "vp run format && vp run lint:fix && pnpm style:lint:fix && pnpm typecheck",
+    "generate:og": "node scripts/generate-og-image.ts",
+    "prepare": "vp config"
   },
   "dependencies": {
-    "@astrojs/react": "^4.2.1",
+    "@astrojs/react": "^5.0.0",
     "@base-ui/react": "^1.3.0",
-    "@tanstack/react-query": "^5.90.21",
+    "@tanstack/react-query": "^5.91.0",
     "@tanstack/react-query-devtools": "^5.91.3",
-    "astro": "^5.18.1",
-    "baseline-status": "1.0.11",
+    "astro": "^6.0.5",
+    "baseline-status": "1.1.1",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
-    "stylelint": "^16.26.1",
-    "stylelint-config-standard": "^39.0.1",
-    "stylelint-order": "^7.0.1",
-    "stylelint-plugin-defensive-css": "^1.1.1",
+    "stylelint": "^17.4.0",
+    "stylelint-config-standard": "^40.0.0",
+    "stylelint-order": "^8.1.1",
+    "stylelint-plugin-defensive-css": "^2.7.0",
     "stylelint-use-logical-spec": "^5.0.1"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.8",
-    "@biomejs/biome": "2.3.11",
-    "@types/node": "^22.19.15",
+    "@types/node": "^25.5.0",
     "@types/react": "^19.2.14",
-    "@types/react-dom": "^19.1.6",
-    "@vitejs/plugin-react": "^5.2.0",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.1",
     "playwright": "^1.58.2",
-    "typescript": "^5.9.3",
-    "vite": "^8.0.0"
+    "typescript": "6.0.1-rc",
+    "vite": "npm:@voidzero-dev/vite-plus-core@latest",
+    "vite-plus": "latest"
   },
   "engines": {
     "node": "^24.0.0",
     "pnpm": "^10.0.0"
   },
+  "packageManager": "pnpm@10.32.1",
   "pnpm": {
     "onlyBuiltDependencies": [
       "esbuild",
       "sharp"
-    ]
-  },
-  "packageManager": "pnpm@10.32.1"
+    ],
+    "overrides": {
+      "vite": "npm:@voidzero-dev/vite-plus-core@latest",
+      "vitest": "npm:@voidzero-dev/vite-plus-test@latest"
+    }
+  }
 }

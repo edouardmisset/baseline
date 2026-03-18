@@ -10,15 +10,31 @@
     "color-no-hex": true,
     "liberty/use-logical-spec": true,
     "selector-class-pattern": null,
-    "plugin/use-defensive-css": [
+    "defensive-css/no-accidental-hover": [true, { "severity": "error" }],
+    "defensive-css/no-list-style-none": [
       true,
-      {
-        "accidental-hover": true,
-        "background-repeat": true,
-        "custom-property-fallbacks": false,
-        "scroll-chaining": true
-      }
-    ]
+      { "fix": true, "severity": "error" }
+    ],
+    "defensive-css/no-mixed-vendor-prefixes": [true, { "severity": "error" }],
+    "defensive-css/no-unsafe-will-change": [true, { "severity": "error" }],
+    "defensive-css/require-background-repeat": [true, { "severity": "error" }],
+    "defensive-css/require-dynamic-viewport-height": [
+      true,
+      { "severity": "warning" }
+    ],
+    "defensive-css/require-flex-wrap": [true, { "severity": "error" }],
+    "defensive-css/require-focus-visible": [true, { "severity": "error" }],
+    "defensive-css/require-named-grid-lines": [
+      true,
+      { "columns": [true, { "severity": "error" }] },
+      { "rows": [true, { "severity": "warning" }] }
+    ],
+    "defensive-css/require-prefers-reduced-motion": [
+      true,
+      { "severity": "error" }
+    ],
+    "defensive-css/require-custom-property-fallback": null,
+    "defensive-css/require-overscroll-behavior": true
   },
   "reportNeedlessDisables": true,
   "reportInvalidScopeDisables": true

@@ -16,6 +16,7 @@
 
 .cardHeader {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-start;
   gap: var(--space-4);
@@ -34,6 +35,7 @@
 
 .actions {
   display: flex;
+  flex-wrap: wrap;
   gap: var(--space-2);
   align-items: center;
 }
@@ -45,6 +47,7 @@
   cursor: pointer;
   margin: 0;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   transition: color var(--duration-med) var(--ease-out);
@@ -65,27 +68,26 @@
   white-space: nowrap;
   font-weight: 600;
   background: oklch(
-    from var(--category-color, var(--color-accent)) l c h /
-    18%
+    from var(--category-color, var(--color-accent)) l c h / 18%
   );
   border: 1px solid
     oklch(from var(--category-color, var(--color-accent)) l c h / 45%);
   color: var(--color-text);
 }
 
-:has([data-category="HTML"]) {
+:has([data-category='HTML']) {
   --category-color: var(--color-category-html);
 }
 
-:has([data-category="CSS"]) {
+:has([data-category='CSS']) {
   --category-color: var(--color-category-css);
 }
 
-:has([data-category="JavaScript"]) {
+:has([data-category='JavaScript']) {
   --category-color: var(--color-category-js);
 }
 
-:has([data-category="Web Platform"]) {
+:has([data-category='Web Platform']) {
   --category-color: var(--color-category-web);
 }
 

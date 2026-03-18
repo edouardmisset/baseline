@@ -75,7 +75,7 @@ export function Dashboard({ featureIds }: Props) {
                   </a>
                 </summary>
                 <dl className={styles.featuresGrid}>
-                  {groupedFeatures[category].map((feature: FeatureData) => (
+                  {groupedFeatures[category]?.map((feature: FeatureData) => (
                     <Card key={feature.id} feature={feature} />
                   ))}
                 </dl>

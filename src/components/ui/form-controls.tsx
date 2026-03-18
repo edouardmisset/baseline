@@ -98,40 +98,40 @@ export function SelectField({
   )
 }
 
-interface MultiSelectFieldProps {
+interface MultiSelectFieldProps<T extends string> {
   label: string
-  value: string[]
+  value: T[]
   options: ReadonlyArray<SelectOption>
   className?: string
-  onValueChange: (next: string[]) => void
+  onValueChange: (next: T[]) => void
 }
 
-export function MultiSelectField({
+export function MultiSelectField<T extends string>({
   label,
   value,
   options,
   className,
   onValueChange,
-}: MultiSelectFieldProps) {
+}: MultiSelectFieldProps<T>) {
   const handleValueChange = (v: string[]) => {
     const next = v ?? []
-    const valueHasAll = value.includes('all')
+    const valueHasAll = (value as string[]).includes('all')
     const nextHasAll = next.includes('all')
 
     if (nextHasAll !== valueHasAll) {
       if (nextHasAll) {
-        onValueChange(['all'])
+        onValueChange(['all' as T])
       } else {
-        onValueChange(next.length > 0 ? next : ['all'])
+        onValueChange(next.length > 0 ? (next as T[]) : ['all' as T])
       }
       return
     }
     if (valueHasAll && nextHasAll) {
       const otherItems = next.filter(item => item !== 'all')
-      onValueChange(otherItems.length > 0 ? otherItems : ['all'])
+      onValueChange(otherItems.length > 0 ? (otherItems as T[]) : ['all' as T])
       return
     }
-    onValueChange(next.length > 0 ? next : ['all'])
+    onValueChange(next.length > 0 ? (next as T[]) : ['all' as T])
   }
 
   return (
