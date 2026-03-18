@@ -8,14 +8,14 @@ const __dirname = dirname(__filename)
 async function generateOGImage() {
   const browser = await chromium.launch()
   const context = await browser.newContext({
-    viewport: { width: 1200, height: 630 },
+    viewport: { width: 1200, height: 700 },
     deviceScaleFactor: 2, // For retina display quality
   })
 
   const page = await context.newPage()
 
   console.log('Loading the application...')
-  await page.goto('http://localhost:5173', {
+  await page.goto('http://localhost:4321/baseline', {
     waitUntil: 'networkidle',
   })
 
@@ -23,14 +23,16 @@ async function generateOGImage() {
   await page.waitForTimeout(2000)
 
   const outputPath = join(__dirname, '..', 'public', 'og-image.jpg')
-  console.log(`Taking screenshot at 1200×630px...`)
+
+  console.log(`Taking screenshot at 1200×700px...`)
+
   await page.screenshot({
     path: outputPath,
     type: 'jpeg',
     quality: 85,
   })
-
   await browser.close()
+
   console.log(`✓ OG image saved to: ${outputPath}`)
 }
 
