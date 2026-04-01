@@ -142,10 +142,10 @@ function FilterBarIsland({ initialFeatures, suggestedFeatureIds }: Props) {
   const [hydrated, setHydrated] = useState(false)
   useEffect(() => {
     setHydrated(true)
-    // Hide the static pre-rendered container
+    // Remove the static pre-rendered container to avoid duplicate IDs
     const staticContainer = document.getElementById('features-container')
     if (staticContainer) {
-      staticContainer.style.display = 'none'
+      staticContainer.remove()
     }
   }, [])
 
